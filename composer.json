@@ -1,0 +1,17 @@
+{
+    "name": "almasmurad/stopwatch",
+    "description": "Component for measuring code execution time",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Almasmurad\\Stopwatch\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "almasmurad",
+            "email": "uhamurad@gmail.com"
+        }
+    ],
+    "require": {}
+}
