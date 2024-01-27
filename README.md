@@ -1,13 +1,18 @@
-# stopwatch
+# Stopwatch
 Component for measuring code execution time
 
+> !!! component is still in development !!!
 
-# Simple example
+
+## Simple example
 
 ```php
 use Almasmurad\Stopwatch\Stopwatches;
 
-$stopwatch = Stopwatches::simple()->start();
+$stopwatch = Stopwatches::simple();
+
+
+$stopwatch->start();
 
 $wrongText = file_get_contents('PiratesOfTheCaribbean.txt');
 $rightText = substr_replace('Jack Sparrow', 'Captain Jack Sparrow', $wrongText);
@@ -21,27 +26,30 @@ outputs
 
 ```
 Started at Sat, 27 Jan 2024 06:55:14 +0000
-··········································
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 All time | 0.198s
 
 ```
 
 
-# Example with steps
+## Example with steps
 
 ```php
 use Almasmurad\Stopwatch\Stopwatches;
 
-$stopwatch = Stopwatches::simple()->start();
+$stopwatch = Stopwatches::simple();
+
+
+$stopwatch->start();
 
 $wrongText = file_get_contents('PiratesOfTheCaribbean.txt');
-$stopwatch->step('loaded text');
+$stopwatch->step('loaded text');                               // <-- ADDED
 
 $rightText = substr_replace('Jack Sparrow', 'Captain Jack Sparrow', $wrongText);
-$stopwatch->step('fixed text');
+$stopwatch->step('fixed text');                                // <-- ADDED
 
 file_put_contents('PiratesOfTheCaribbean.txt');
-$stopwatch->step('saved text');
+$stopwatch->step('saved text');                                // <-- ADDED
 
 $stopwatch->stop()->report();
 
@@ -51,7 +59,7 @@ outputs
 
 ```
 Started at Sat, 27 Jan 2024 06:55:14 +0000
-··········································
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 Steps       | Time  
 --------------------
 loaded text | 0.020s
@@ -63,12 +71,16 @@ All time    | 0.198s
 ```
 
 
-# Example with peak memory measuring
+## Example with peak memory measuring
 
 ```php
 use Almasmurad\Stopwatch\Stopwatches;
 
-$stopwatch = Stopwatches::simple()->withPeakMemoryMeasure()->start();
+$stopwatch = Stopwatches::simple()
+    ->withPeakMemoryMeasure();                                 // <-- ADDED
+
+
+$stopwatch->start();
 
 // ...
 
@@ -80,7 +92,7 @@ outputs
 
 ```
 Started at Sat, 27 Jan 2024 06:55:14 +0000
-··········································
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 Steps       | Time   | Peak memory  
 ----------------------------------
 loaded text | 0.020s |        21 B
