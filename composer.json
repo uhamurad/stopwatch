@@ -3,11 +3,13 @@
     "description": "Component for measuring code execution time",
     "type": "library",
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "ext-mbstring": "*"
     },
     "autoload": {
         "psr-4": {
-            "Almasmurad\\Stopwatch\\": "src/"
+            "Almasmurad\\Stopwatch\\": "src/",
+            "Almasmurad\\Stopwatch\\Tests\\": "tests/"
         }
     },
     "authors": [
