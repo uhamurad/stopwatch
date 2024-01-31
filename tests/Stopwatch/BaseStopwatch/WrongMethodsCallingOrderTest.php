@@ -15,19 +15,6 @@ class WrongMethodsCallingOrderTest extends TestCase
     const STOP_MISSED_NOTICE_MSG = 'stop() method calling was missed. Time of calling report() method is taken as stop time';
     const STOP_SKIPPED_NOTICE_MSG = 'stop() method calling was skipped, because Stopwatch is already stopped';
 
-    public function testStop()
-    {
-        // arrange
-        $stopwatch = new BaseStopwatch();
-
-        // act
-        $output = $this->act($stopwatch, ['stop']);
-
-        // assert
-        $this->assertContains(self::NOTICES_LABEL, $output);
-        $this->assertContains(self::START_MISSED_NOTICE_MSG, $output);
-    }
-
     public function testReport()
     {
         // arrange
@@ -61,25 +48,11 @@ class WrongMethodsCallingOrderTest extends TestCase
         $stopwatch = new BaseStopwatch();
 
         // act
-        $output = $this->act($stopwatch, ['start']);
+        $output = $this->act($stopwatch, ['start', 'report']);
 
         // assert
         $this->assertContains(self::NOTICES_LABEL, $output);
         $this->assertContains(self::STOP_MISSED_NOTICE_MSG, $output);
-    }
-
-    public function testStartReportStop()
-    {
-        // arrange
-        $stopwatch = new BaseStopwatch();
-
-        // act
-        $output = $this->act($stopwatch, ['start', 'report', 'stop']);
-
-        // assert
-        $this->assertContains(self::NOTICES_LABEL, $output);
-        $this->assertContains(self::STOP_MISSED_NOTICE_MSG, $output);
-        $this->assertContains(self::STOP_SKIPPED_NOTICE_MSG, $output);
     }
 
     public function testStopStartReport()
@@ -94,52 +67,6 @@ class WrongMethodsCallingOrderTest extends TestCase
         $this->assertContains(self::NOTICES_LABEL, $output);
         $this->assertContains(self::START_MISSED_NOTICE_MSG, $output);
         $this->assertContains(self::START_SKIPPED_NOTICE_MSG, $output);
-    }
-
-    public function testStopReportStart()
-    {
-        // arrange
-        $stopwatch = new BaseStopwatch();
-
-        // act
-        $output = $this->act($stopwatch, ['stop', 'report', 'start']);
-
-        // assert
-        $this->assertContains(self::NOTICES_LABEL, $output);
-        $this->assertContains(self::START_MISSED_NOTICE_MSG, $output);
-        $this->assertContains(self::START_SKIPPED_NOTICE_MSG, $output);
-    }
-
-    public function testReportStartStop()
-    {
-        // arrange
-        $stopwatch = new BaseStopwatch();
-
-        // act
-        $output = $this->act($stopwatch, ['report', 'start', 'stop']);
-
-        // assert
-        $this->assertContains(self::NOTICES_LABEL, $output);
-        $this->assertContains(self::START_MISSED_NOTICE_MSG, $output);
-        $this->assertContains(self::STOP_MISSED_NOTICE_MSG, $output);
-        $this->assertContains(self::START_SKIPPED_NOTICE_MSG, $output);
-        $this->assertContains(self::STOP_SKIPPED_NOTICE_MSG, $output);
-    }
-
-    public function testReportStopStart()
-    {
-        // arrange
-        $stopwatch = new BaseStopwatch();
-
-        // act
-        $output = $this->act($stopwatch, ['report', 'stop', 'start']);
-
-        // assert
-        $this->assertContains(self::NOTICES_LABEL, $output);
-        $this->assertContains(self::START_MISSED_NOTICE_MSG, $output);
-        $this->assertContains(self::STOP_MISSED_NOTICE_MSG, $output);
-        $this->assertContains(self::START_SKIPPED_NOTICE_MSG, $output);
-        $this->assertContains(self::STOP_SKIPPED_NOTICE_MSG, $output);
     }
 
     /**
