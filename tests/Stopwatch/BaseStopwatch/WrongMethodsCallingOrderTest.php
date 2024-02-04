@@ -83,7 +83,7 @@ class WrongMethodsCallingOrderTest extends TestCase
 
     /**
      * @param BaseStopwatch $stopwatch
-     * @param string[] $methods
+     * @param literal-string[] $methods
      * @return string
      */
     private function act(BaseStopwatch $stopwatch, array $methods): string

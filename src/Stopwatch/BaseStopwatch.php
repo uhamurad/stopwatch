@@ -13,8 +13,9 @@ final class BaseStopwatch implements StopwatchInterface
 
     /**
      * @var float
+     * @readonly
      */
-    private $createTimestamp = 0;
+    private $createTimestamp;
     /**
      * @var float
      */
@@ -29,6 +30,7 @@ final class BaseStopwatch implements StopwatchInterface
     private $reportTimestamp = 0;
     /**
      * @var NoticesCollection
+     * @readonly
      */
     private $notices;
 

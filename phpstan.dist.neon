@@ -1,0 +1,11 @@
+parameters:
+	level: 9
+	paths:
+		- src
+		- tests
+	checkFunctionNameCase: true
+	checkInternalClassCaseSensitivity: true
+	checkTooWideReturnTypesInProtectedAndPublicMethods: true
+	checkUninitializedProperties: true
+	checkDynamicProperties: true
+	reportWrongPhpDocTypeInVarTag: true
