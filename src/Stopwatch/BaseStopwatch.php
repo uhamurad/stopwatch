@@ -23,9 +23,13 @@ final class BaseStopwatch implements StopwatchInterface
      * @var float
      */
     private $stopTimestamp = 0;
-
+    /**
+     * @var float
+     */
     private $reportTimestamp = 0;
-
+    /**
+     * @var NoticesCollection
+     */
     private $notices;
 
     public function __construct()
@@ -83,17 +87,11 @@ final class BaseStopwatch implements StopwatchInterface
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    private function getCurrentTimestamp()
+    private function getCurrentTimestamp(): float
     {
         return microtime(true);
     }
 
-    /**
-     * @return void
-     */
     private function skipStartIfNecessary(): bool
     {
         if ($this->startTimestamp) {
@@ -112,6 +110,9 @@ final class BaseStopwatch implements StopwatchInterface
         return false;
     }
 
+    /**
+     * @return void
+     */
     private function correctStartTimestampIfNecessary()
     {
         if (!$this->startTimestamp) {
@@ -120,6 +121,9 @@ final class BaseStopwatch implements StopwatchInterface
         }
     }
 
+    /**
+     * @return void
+     */
     private function correctStopTimestampIfNecessary()
     {
         if (!$this->stopTimestamp) {

@@ -11,7 +11,10 @@ class NoticesCollection
      */
     private $notices = [];
 
-    public function addNotice($notice)
+    /**
+     * @return void
+     */
+    public function addNotice(NoticeInterface $notice)
     {
         $this->notices[] = $notice;
     }
@@ -21,6 +24,9 @@ class NoticesCollection
         return !empty($this->notices);
     }
 
+    /**
+     * @return NoticeInterface[]
+     */
     public function getAllNotices(): array
     {
         return $this->notices;

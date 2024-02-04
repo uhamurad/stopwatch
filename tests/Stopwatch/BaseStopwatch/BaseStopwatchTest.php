@@ -10,6 +10,9 @@ class BaseStopwatchTest extends TestCase
 
     const STARTED_AT = 'Started at';
 
+    /**
+     * @return void
+     */
     public function testReportStarted()
     {
 
@@ -34,7 +37,6 @@ class BaseStopwatchTest extends TestCase
     }
 
     /**
-     * @param string $output
      * @return void
      */
     private function assertStartedAtLabel(string $output)
@@ -43,15 +45,12 @@ class BaseStopwatchTest extends TestCase
     }
 
     /**
-     * @param string $output
-     * @param $beforeStartTimestamp
-     * @param $afterStartTimestamp
      * @return void
      */
-    private function assertStartedAtValue(string $output, $beforeStartTimestamp, $afterStartTimestamp)
+    private function assertStartedAtValue(string $output, float $beforeStartTimestamp, float $afterStartTimestamp)
     {
-        $startedLine = strstr($output, "\n", true);
-        $startedDateStr = substr($startedLine, mb_strlen(self::STARTED_AT));
+        $startedLine = strstr($output, "\n", true) ?: '';
+        $startedDateStr = substr($startedLine, mb_strlen(self::STARTED_AT)) ?: '';
         $startedDateTimestamp = strtotime($startedDateStr);
 
         $this->assertGreaterThanOrEqual((int)$beforeStartTimestamp, $startedDateTimestamp);

@@ -15,6 +15,9 @@ class WrongMethodsCallingOrderTest extends TestCase
     const STOP_MISSED_NOTICE_MSG = 'stop() method calling was missed. Time of calling report() method is taken as stop time';
     const STOP_SKIPPED_NOTICE_MSG = 'stop() method calling was skipped, because Stopwatch is already stopped';
 
+    /**
+     * @return void
+     */
     public function testReport()
     {
         // arrange
@@ -29,6 +32,9 @@ class WrongMethodsCallingOrderTest extends TestCase
         $this->assertContains(self::STOP_MISSED_NOTICE_MSG, $output);
     }
 
+    /**
+     * @return void
+     */
     public function testStopReport()
     {
         // arrange
@@ -42,6 +48,9 @@ class WrongMethodsCallingOrderTest extends TestCase
         $this->assertContains(self::START_MISSED_NOTICE_MSG, $output);
     }
 
+    /**
+     * @return void
+     */
     public function testStartReport()
     {
         // arrange
@@ -55,6 +64,9 @@ class WrongMethodsCallingOrderTest extends TestCase
         $this->assertContains(self::STOP_MISSED_NOTICE_MSG, $output);
     }
 
+    /**
+     * @return void
+     */
     public function testStopStartReport()
     {
         // arrange
@@ -71,7 +83,7 @@ class WrongMethodsCallingOrderTest extends TestCase
 
     /**
      * @param BaseStopwatch $stopwatch
-     * @param array $methods
+     * @param string[] $methods
      * @return string
      */
     private function act(BaseStopwatch $stopwatch, array $methods): string
