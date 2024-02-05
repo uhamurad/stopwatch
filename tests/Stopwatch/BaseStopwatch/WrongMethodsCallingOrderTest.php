@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\BaseStopwatch;
 
@@ -7,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class WrongMethodsCallingOrderTest extends TestCase
 {
-
     const ERRORS_LABEL = 'Errors';
     const NOTICES_LABEL = 'Notices';
     const START_MISSED_NOTICE_MSG = 'start() method calling was missed. Time of Stopwatch creation is taken as start time';
@@ -88,9 +89,9 @@ class WrongMethodsCallingOrderTest extends TestCase
      */
     private function act(BaseStopwatch $stopwatch, array $methods): string
     {
-        $this->setOutputCallback(function() {});
-        foreach ($methods as $method){
-            switch ($method){
+        $this->setOutputCallback(function () {});
+        foreach ($methods as $method) {
+            switch ($method) {
                 case 'start':
                     $stopwatch->start();
                     break;

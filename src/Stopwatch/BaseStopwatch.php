@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Almasmurad\Stopwatch\Stopwatch;
 
 use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
@@ -10,7 +12,6 @@ use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
 
 final class BaseStopwatch implements StopwatchInterface
 {
-
     /**
      * @var float
      * @readonly
@@ -76,7 +77,7 @@ final class BaseStopwatch implements StopwatchInterface
         $message .= $breakLine;
         $message .= "All time | {$elapsedStr}s\n";
 
-        if ($this->notices->hasNotices()){
+        if ($this->notices->hasNotices()) {
             $message .= $breakLine;
             $message .= "Notices:\n";
             foreach ($this->notices->getAllNotices() as $notice) {

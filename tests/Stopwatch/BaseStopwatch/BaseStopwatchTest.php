@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\BaseStopwatch;
 
@@ -7,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class BaseStopwatchTest extends TestCase
 {
-
     const STARTED_AT = 'Started at';
 
     /**
@@ -20,7 +21,7 @@ class BaseStopwatchTest extends TestCase
         $stopwatch = new BaseStopwatch();
 
         // act
-        $this->setOutputCallback(function() {});
+        $this->setOutputCallback(function () {});
         $beforeStartTimestamp = microtime(true);
         $stopwatch->start();
         $afterStartTimestamp = microtime(true);

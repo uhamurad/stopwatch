@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Almasmurad\Stopwatch;
 
 use Almasmurad\Stopwatch\Stopwatch\BaseStopwatch;
