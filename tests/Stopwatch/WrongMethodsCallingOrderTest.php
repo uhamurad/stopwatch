@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Tests\Stopwatch\BaseStopwatch;
+namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
-use Almasmurad\Stopwatch\Stopwatch\BaseStopwatch;
+use Almasmurad\Stopwatch\Stopwatch;
 use PHPUnit\Framework\TestCase;
 
 class WrongMethodsCallingOrderTest extends TestCase
@@ -22,7 +22,7 @@ class WrongMethodsCallingOrderTest extends TestCase
     public function testReport()
     {
         // arrange
-        $stopwatch = new BaseStopwatch();
+        $stopwatch = new Stopwatch();
 
         // act
         $output = $this->act($stopwatch, ['report']);
@@ -39,7 +39,7 @@ class WrongMethodsCallingOrderTest extends TestCase
     public function testStopReport()
     {
         // arrange
-        $stopwatch = new BaseStopwatch();
+        $stopwatch = new Stopwatch();
 
         // act
         $output = $this->act($stopwatch, ['stop', 'report']);
@@ -55,7 +55,7 @@ class WrongMethodsCallingOrderTest extends TestCase
     public function testStartReport()
     {
         // arrange
-        $stopwatch = new BaseStopwatch();
+        $stopwatch = new Stopwatch();
 
         // act
         $output = $this->act($stopwatch, ['start', 'report']);
@@ -71,7 +71,7 @@ class WrongMethodsCallingOrderTest extends TestCase
     public function testStopStartReport()
     {
         // arrange
-        $stopwatch = new BaseStopwatch();
+        $stopwatch = new Stopwatch();
 
         // act
         $output = $this->act($stopwatch, ['stop', 'start', 'report']);
@@ -83,11 +83,11 @@ class WrongMethodsCallingOrderTest extends TestCase
     }
 
     /**
-     * @param BaseStopwatch $stopwatch
+     * @param Stopwatch $stopwatch
      * @param literal-string[] $methods
      * @return string
      */
-    private function act(BaseStopwatch $stopwatch, array $methods): string
+    private function act(Stopwatch $stopwatch, array $methods): string
     {
         $this->setOutputCallback(function () {});
         foreach ($methods as $method) {

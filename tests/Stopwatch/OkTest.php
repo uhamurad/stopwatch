@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Tests\Stopwatch\BaseStopwatch;
+namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
-use Almasmurad\Stopwatch\Stopwatch\BaseStopwatch;
+use Almasmurad\Stopwatch\Stopwatch;
 use PHPUnit\Framework\TestCase;
 
-class BaseStopwatchTest extends TestCase
+class OkTest extends TestCase
 {
     const STARTED_AT = 'Started at';
 
@@ -18,7 +18,7 @@ class BaseStopwatchTest extends TestCase
     {
 
         // arrange
-        $stopwatch = new BaseStopwatch();
+        $stopwatch = new Stopwatch();
 
         // act
         $this->setOutputCallback(function () {});

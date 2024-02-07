@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch;
+namespace Almasmurad\Stopwatch;
 
 use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartMissedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StopMissedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
+use Almasmurad\Stopwatch\Stopwatch\StopwatchInterface;
 
-final class BaseStopwatch implements StopwatchInterface
+final class Stopwatch implements StopwatchInterface
 {
     /**
      * @var float
