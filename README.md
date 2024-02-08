@@ -1,104 +1,47 @@
 # Stopwatch
-Component for measuring code execution time
 
-> !!! component is still in development !!!
+PHP tool that measures code execution time.
 
 
-## Simple example
+## Usage
 
 ```php
-use Almasmurad\Stopwatch\Stopwatches;
+$stopwatch = new Almasmurad\Stopwatch\Stopwatch();
 
-$stopwatch = Stopwatches::simple();
+//... (measured code)
 
-
-$stopwatch->start();
-
-$wrongText = file_get_contents('PiratesOfTheCaribbean.txt');
-$rightText = substr_replace('Jack Sparrow', 'Captain Jack Sparrow', $wrongText);
-file_put_contents('PiratesOfTheCaribbean.txt');
-
-$stopwatch->stop()->report();
-
+$stopwatch->report();
 ```
 
-outputs
+The result is a report:
 
 ```
 Started at Sat, 27 Jan 2024 06:55:14 +0000
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 All time | 0.198s
-
 ```
 
+## Additional features
 
-## Example with steps
+Using the `start()` and `stop()` methods, you can measure a separate section of the code:
 
 ```php
-use Almasmurad\Stopwatch\Stopwatches;
+$stopwatch = new Almasmurad\Stopwatch\Stopwatch();
+//... 
+$stopwatch->start();   // start measuring
 
-$stopwatch = Stopwatches::simple();
+//... (measured code)
 
-
-$stopwatch->start();
-
-$wrongText = file_get_contents('PiratesOfTheCaribbean.txt');
-$stopwatch->step('loaded text');                               // <-- ADDED
-
-$rightText = substr_replace('Jack Sparrow', 'Captain Jack Sparrow', $wrongText);
-$stopwatch->step('fixed text');                                // <-- ADDED
-
-file_put_contents('PiratesOfTheCaribbean.txt');
-$stopwatch->step('saved text');                                // <-- ADDED
-
-$stopwatch->stop()->report();
-
-```
-
-outputs
-
-```
-Started at Sat, 27 Jan 2024 06:55:14 +0000
-‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-Steps       | Time  
---------------------
-loaded text | 0.020s
-fixed text  | 0.166s
-saved text  | 0.012s
---------------------
-All time    | 0.198s
-
+$stopwatch->stop();    // stop measuring
+//... 
+$stopwatch->report();
 ```
 
 
-## Example with peak memory measuring
+## Future plans
 
-```php
-use Almasmurad\Stopwatch\Stopwatches;
-
-$stopwatch = Stopwatches::simple()
-    ->withPeakMemoryMeasure();                                 // <-- ADDED
-
-
-$stopwatch->start();
-
-// ...
-
-$stopwatch->stop()->report();
-
-```
-
-outputs
-
-```
-Started at Sat, 27 Jan 2024 06:55:14 +0000
-‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-Steps       | Time   | Peak memory  
-----------------------------------
-loaded text | 0.020s |        21 B
-fixed text  | 0.166s |    25 839 B
-saved text  | 0.012s |       117 B
-----------------------------------
-All time    | 0.198s |    25 839 B
-
-```
+Stopwatch will evolve and acquire additional features. An incomplete list of planned changes:
+- Adding the `step()` method, which can be used to measure the time of each stage of the process.
+- Adding the ability to output a report not only to standard output, but also to a local file.
+- Adding the ability to measure not only time, but also peak memory usage.
+- Adding the ability to measure a repeatable process when the `start()` and `stop()` methods are called multiple times.
