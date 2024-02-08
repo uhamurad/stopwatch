@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch;
 
 use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
-use Almasmurad\Stopwatch\Stopwatch\Notices\StartMissedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
-use Almasmurad\Stopwatch\Stopwatch\Notices\StopMissedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\StopwatchInterface;
 
@@ -120,7 +118,6 @@ final class Stopwatch implements StopwatchInterface
     private function correctStartTimestampIfNecessary()
     {
         if (!$this->startTimestamp) {
-            $this->notices->addNotice(new StartMissedNotice());
             $this->startTimestamp = $this->createTimestamp;
         }
     }
@@ -131,7 +128,6 @@ final class Stopwatch implements StopwatchInterface
     private function correctStopTimestampIfNecessary()
     {
         if (!$this->stopTimestamp) {
-            $this->notices->addNotice(new StopMissedNotice());
             $this->stopTimestamp = $this->reportTimestamp;
         }
     }
