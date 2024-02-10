@@ -2,6 +2,7 @@
 
 PHP tool that measures code execution time.
 
+[README in Russian](docs/ru/README.md)
 
 ## Usage
 
