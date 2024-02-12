@@ -7,6 +7,8 @@ namespace Almasmurad\Stopwatch;
 use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
+use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
+use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\StdoutReportRoute;
 use Almasmurad\Stopwatch\Stopwatch\StopwatchInterface;
 
 final class Stopwatch implements StopwatchInterface
@@ -34,10 +36,16 @@ final class Stopwatch implements StopwatchInterface
      */
     private $notices;
 
+    /**
+     * @var ReportRouteInterface
+     */
+    private $reportRoute;
+
     public function __construct()
     {
         $this->createTimestamp = $this->getCurrentTimestamp();
         $this->notices = new NoticesCollection();
+        $this->reportRoute = $this->getDefaultReportRoute();
     }
 
     public function start(): StopwatchInterface
@@ -65,26 +73,9 @@ final class Stopwatch implements StopwatchInterface
         $this->correctStartTimestampIfNecessary();
         $this->correctStopTimestampIfNecessary();
 
-        $elapsed = $this->stopTimestamp - $this->startTimestamp;
+        $message = $this->makeReport();
 
-        $startedStr = date('r', (int)$this->startTimestamp);
-        $elapsedStr = number_format($elapsed, 3, '.', ' ');
-
-        $message = "Started at {$startedStr}\n";
-        $breakLineLength = mb_strlen($message);
-        $breakLine = str_repeat('—', $breakLineLength)."\n";
-        $message .= $breakLine;
-        $message .= "All time | {$elapsedStr}s\n";
-
-        if ($this->notices->hasNotices()) {
-            $message .= $breakLine;
-            $message .= "Notices:\n";
-            foreach ($this->notices->getAllNotices() as $notice) {
-                $message .= " - ". $notice->getText() . "\n";
-            }
-        }
-
-        echo $message;
+        $this->processReport($message);
 
         return $this;
     }
@@ -130,6 +121,50 @@ final class Stopwatch implements StopwatchInterface
         if (!$this->stopTimestamp) {
             $this->stopTimestamp = $this->reportTimestamp;
         }
+    }
+
+    private function getDefaultReportRoute(): ReportRouteInterface
+    {
+        return new StdoutReportRoute();
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    private function processReport(string $message)
+    {
+        try {
+            $this->reportRoute->process($message);
+        } catch (\Throwable $exception) {
+
+        }
+    }
+
+    /**
+     * @return string
+     */
+    private function makeReport(): string
+    {
+        $elapsed = $this->stopTimestamp - $this->startTimestamp;
+
+        $startedStr = date('r', (int)$this->startTimestamp);
+        $elapsedStr = number_format($elapsed, 3, '.', ' ');
+
+        $message = "Started at {$startedStr}\n";
+        $breakLineLength = mb_strlen($message);
+        $breakLine = str_repeat('—', $breakLineLength) . "\n";
+        $message .= $breakLine;
+        $message .= "All time | {$elapsedStr}s\n";
+
+        if ($this->notices->hasNotices()) {
+            $message .= $breakLine;
+            $message .= "Notices:\n";
+            foreach ($this->notices->getAllNotices() as $notice) {
+                $message .= " - " . $notice->getText() . "\n";
+            }
+        }
+        return $message;
     }
 
 
