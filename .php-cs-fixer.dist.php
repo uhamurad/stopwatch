@@ -8,7 +8,8 @@ return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR12' => true,
         'visibility_required' => ['elements' => ['method', 'property']],
-        'declare_strict_types' => true
+        'declare_strict_types' => true,
+        'no_unused_imports' => true,
     ])
     ->setFinder($finder)
     ;
