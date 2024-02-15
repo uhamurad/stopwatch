@@ -17,7 +17,6 @@ class UnableToProcessReportException extends StopwatchException
      * @var string
      */
     private $report;
-
     public function __construct(ReportRouteInterface $route, string $report, string $message = "", int $code = 0, \Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);

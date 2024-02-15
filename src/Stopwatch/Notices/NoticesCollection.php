@@ -12,7 +12,6 @@ class NoticesCollection
      * @var NoticeInterface[]
      */
     private $notices = [];
-
     /**
      * @return void
      */

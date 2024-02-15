@@ -8,6 +8,7 @@ use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
+use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\FileReportRoute;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\StdoutReportRoute;
 use Almasmurad\Stopwatch\Stopwatch\StopwatchInterface;
 
@@ -78,6 +79,18 @@ final class Stopwatch implements StopwatchInterface
         $this->processReport($message);
 
         return $this;
+    }
+
+    public function reportToFile(string $filepath): StopwatchInterface
+    {
+        return $this->withReportRoute(new FileReportRoute($filepath))->report();
+    }
+
+    public function withReportRoute(ReportRouteInterface $reportRoute): StopwatchInterface
+    {
+        $clone = clone $this;
+        $clone->reportRoute = $reportRoute;
+        return $clone;
     }
 
     private function getCurrentTimestamp(): float
@@ -166,6 +179,5 @@ final class Stopwatch implements StopwatchInterface
         }
         return $message;
     }
-
 
 }

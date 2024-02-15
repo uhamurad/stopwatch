@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch;
 
-interface StopwatchInterface
+use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
+
+interface StopwatchInterface extends StopwatchWithoutSugarInterface
 {
-    public function start(): self;
+    public function reportToFile(string $filepath): self;
 
-    public function stop(): self;
-
-    public function report(): self;
+    public function withReportRoute(ReportRouteInterface $reportRoute): self;
 }

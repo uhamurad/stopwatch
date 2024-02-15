@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
 use Almasmurad\Stopwatch\Stopwatch;
-use PHPUnit\Framework\TestCase;
+use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
 
-class OkTest extends TestCase
+class OkTest extends AbstractTest
 {
-    const STARTED_AT = 'Started at';
-
     /**
      * @return void
      */
@@ -37,24 +35,4 @@ class OkTest extends TestCase
 
     }
 
-    /**
-     * @return void
-     */
-    private function assertStartedAtLabel(string $output)
-    {
-        $this->assertContains(self::STARTED_AT, $output);
-    }
-
-    /**
-     * @return void
-     */
-    private function assertStartedAtValue(string $output, float $beforeStartTimestamp, float $afterStartTimestamp)
-    {
-        $startedLine = strstr($output, "\n", true) ?: '';
-        $startedDateStr = substr($startedLine, mb_strlen(self::STARTED_AT)) ?: '';
-        $startedDateTimestamp = strtotime($startedDateStr);
-
-        $this->assertGreaterThanOrEqual((int)$beforeStartTimestamp, $startedDateTimestamp);
-        $this->assertLessThanOrEqual((int)$afterStartTimestamp, $startedDateTimestamp);
-    }
 }

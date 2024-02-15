@@ -127,7 +127,6 @@ class NoticesTest extends TestCase
 
         ];
     }
-
     /**
      * @param Stopwatch $stopwatch
      * @param string[] $methods
