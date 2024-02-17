@@ -6,3 +6,4 @@ composer.phar
 /.php-cs-fixer.cache
 /composer.lock
 /phpunit.xml
+/tests/Stopwatch/runtime/

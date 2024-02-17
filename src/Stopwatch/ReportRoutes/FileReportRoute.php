@@ -26,7 +26,7 @@ class FileReportRoute implements Common\ReportRouteInterface
         $this->filePutContents($this->filepath, $report);
     }
     /**
-     * @return false|int
+     * @return void
      */
     private function filePutContents(string $fullPath, string $contents)
     {
@@ -39,10 +39,11 @@ class FileReportRoute implements Common\ReportRouteInterface
         }
 
         $result = @file_put_contents($fullPath, $contents);
-        if ($result === false){
+        if ($result === false) {
             $error = error_get_last();
             throw new UnableToProcessReportException($this, $contents, sprintf(
-                "Error due calling file_put_contents() for writing a report: %s", $error['message']
+                "Error due calling file_put_contents() for writing a report: %s",
+                $error['message'] ?? 'undefined error'
             ));
         }
     }
