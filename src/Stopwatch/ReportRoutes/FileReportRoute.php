@@ -23,15 +23,12 @@ class FileReportRoute implements Common\ReportRouteInterface
      */
     public function process(string $report)
     {
-        $result = $this->filePutContents($this->filepath, $report);
-        if ($result === false) {
-            throw new UnableToProcessReportException($this, $report, sprintf('Unable to write report to file %s', $this->filepath));
-        }
+        $this->filePutContents($this->filepath, $report);
     }
     /**
      * @return false|int
      */
-    private function filePutContents(string $fullPath, string $contents, int $flags = 0)
+    private function filePutContents(string $fullPath, string $contents)
     {
         $parts = explode('/', $fullPath);
         array_pop($parts);
@@ -41,6 +38,12 @@ class FileReportRoute implements Common\ReportRouteInterface
             mkdir($dir, 0777, true);
         }
 
-        return file_put_contents($fullPath, $contents, $flags);
+        $result = @file_put_contents($fullPath, $contents);
+        if ($result === false){
+            $error = error_get_last();
+            throw new UnableToProcessReportException($this, $contents, sprintf(
+                "Error due calling file_put_contents() for writing a report: %s", $error['message']
+            ));
+        }
     }
 }
