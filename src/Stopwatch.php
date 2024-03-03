@@ -68,7 +68,6 @@ final class Stopwatch implements StopwatchInterface
 
     public function report(): StopwatchInterface
     {
-
         $this->reportTimestamp = $this->getCurrentTimestamp();
 
         $this->correctStartTimestampIfNecessary();
@@ -149,7 +148,7 @@ final class Stopwatch implements StopwatchInterface
     {
         try {
             $this->reportRoute->process($message);
-        } catch (\Throwable $exception) {
+        } catch (\Throwable $exception) { // @codeCoverageIgnore
 
         }
     }
