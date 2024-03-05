@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Common;
 
-use Almasmurad\Stopwatch\Stopwatch;
+use Almasmurad\Stopwatch\Stopwatch\StopwatchInterface;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractTest extends TestCase
@@ -41,10 +41,9 @@ abstract class AbstractTest extends TestCase
     }
 
     /**
-     * @param Stopwatch $stopwatch
      * @return float[]
      */
-    protected function simpleAct(Stopwatch $stopwatch): array
+    protected function simpleAct(StopwatchInterface $stopwatch): array
     {
         $beforeStartTimestamp = microtime(true);
         $stopwatch->start();

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
 use Almasmurad\Stopwatch\Stopwatch;
+use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\TestReportRoute;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
 
 class StopwatchTest extends AbstractTest
@@ -19,10 +20,7 @@ class StopwatchTest extends AbstractTest
 
         // When
         $this->setOutputCallback(function () {});
-        $beforeStartTimestamp = microtime(true);
-        $stopwatch->start();
-        $afterStartTimestamp = microtime(true);
-        $stopwatch->stop();
+        list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
         $stopwatch->report();
 
         // Then
@@ -44,10 +42,7 @@ class StopwatchTest extends AbstractTest
         // When
         @rmdir($dir);
         @unlink($filepath);
-        $beforeStartTimestamp = microtime(true);
-        $stopwatch->start();
-        $afterStartTimestamp = microtime(true);
-        $stopwatch->stop();
+        list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
         $stopwatch->reportToFile($filepath);
 
         // Then
@@ -69,13 +64,29 @@ class StopwatchTest extends AbstractTest
 
         // When
         @rmdir($dir);
-        $beforeStartTimestamp = microtime(true);
-        $stopwatch->start();
-        $afterStartTimestamp = microtime(true);
-        $stopwatch->stop();
+        $this->simpleAct($stopwatch);
         $stopwatch->reportToFile($filepath);
 
         // Then no exceptions
+    }
+
+    /**
+     * @return void
+     */
+    public function testWithReportRoute()
+    {
+        // Given
+        $testReportRoute = new TestReportRoute();
+        $stopwatch = (new Stopwatch())->withReportRoute($testReportRoute);
+
+        // When
+        list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
+        $stopwatch->report();
+
+        // Then
+        $output = $testReportRoute->getReport();
+        $this->assertStartedAtLabel($output);
+        $this->assertStartedAtValue($output, $beforeStartTimestamp, $afterStartTimestamp);
     }
 
 }
