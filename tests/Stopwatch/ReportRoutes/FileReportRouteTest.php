@@ -7,26 +7,28 @@ namespace Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\Exceptions\UnableToProcessReportException;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\FileReportRoute;
 use Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes\Common\AbstractReportRouteTest;
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\vfsStreamFile;
 
 final class FileReportRouteTest extends AbstractReportRouteTest
 {
-    const REPORT_DIR = __DIR__ . '/../runtime/report';
-    const REPORT_BASENAME = '/report.txt';
+    const REPORT_DIR = 'reports';
+    const REPORT_BASENAME = 'report.txt';
+    const REPORT_FILEPATH = self::REPORT_DIR . '/' . self::REPORT_BASENAME;
 
     /**
+     * @var vfsStreamDirectory
+     */
+    private $vfsStreamDirectory;
+
+    /**
+     * @see https://github.com/bovigo/vfsStream/wiki
      * @return void
      */
     protected function setUp()
     {
-        $this->removeReportDir();
-    }
-
-    /**
-     * @return void
-     */
-    protected function tearDown()
-    {
-        $this->removeReportDir();
+        $this->vfsStreamDirectory = vfsStream::setup();
     }
 
     /**
@@ -37,7 +39,7 @@ final class FileReportRouteTest extends AbstractReportRouteTest
     public function testProcessWhenNoFile(string $report)
     {
         // Given
-        $filepath = self::REPORT_DIR. self::REPORT_BASENAME;
+        $filepath = $this->getFilepathUrl();
         $route = new FileReportRoute($filepath);
 
         // When
@@ -45,7 +47,7 @@ final class FileReportRouteTest extends AbstractReportRouteTest
         $route->process($report);
 
         // Then
-        $output = file_get_contents($filepath);
+        $output = $this->getReportFileContent();
         $this->assertEquals($report, $output);
     }
 
@@ -57,14 +59,15 @@ final class FileReportRouteTest extends AbstractReportRouteTest
     public function testProcessWhenNoDir(string $report)
     {
         // Given
-        $filepath = self::REPORT_DIR. self::REPORT_BASENAME;
+        $filepath = $this->getFilepathUrl();
         $route = new FileReportRoute($filepath);
 
         // When
         $route->process($report);
 
         // Then
-        $output = file_get_contents($filepath);
+        $this->assertTrue($this->hasReportFile());
+        $output = $this->getReportFileContent();
         $this->assertEquals($report, $output);
     }
 
@@ -75,8 +78,8 @@ final class FileReportRouteTest extends AbstractReportRouteTest
      */
     public function testProcessWhenFileAlreadyHasData(string $report)
     {
-        // Given\
-        $filepath = self::REPORT_DIR. self::REPORT_BASENAME;
+        // Given
+        $filepath = $this->getFilepathUrl();
         $route = new FileReportRoute($filepath);
 
         // When
@@ -85,7 +88,7 @@ final class FileReportRouteTest extends AbstractReportRouteTest
         $route->process($report);
 
         // Then
-        $output = file_get_contents($filepath);
+        $output = $this->getReportFileContent();
         $this->assertEquals($report, $output);
     }
 
@@ -97,7 +100,7 @@ final class FileReportRouteTest extends AbstractReportRouteTest
     public function testProcessWhenThrownException(string $report)
     {
         // Given
-        $wrongFilepath = self::REPORT_DIR.'/';
+        $wrongFilepath = $this->vfsStreamDirectory->url() . '/';
         $route = new FileReportRoute($wrongFilepath);
 
         // Then
@@ -108,12 +111,40 @@ final class FileReportRouteTest extends AbstractReportRouteTest
     }
 
     /**
+     * @return string
+     */
+    private function getFilepathUrl(): string
+    {
+        return $this->vfsStreamDirectory->url() . '/' . self::REPORT_FILEPATH;
+    }
+
+    /**
+     * @return string
+     */
+    private function getReportFileContent(): string
+    {
+        $child = $this->vfsStreamDirectory->getChild(self::REPORT_FILEPATH);
+        if (!($child instanceof vfsStreamFile)) {
+            throw new \LogicException('It is necessary to check if the file exists');
+            }
+            return $child->getContent();
+            }
+
+            /**
+             * @return bool
+             */
+            private function hasReportFile(): bool
+            {
+                return $this->vfsStreamDirectory->hasChild(self::REPORT_FILEPATH);
+            }
+
+    /**
      * @param string $content
      * @return void
      */
     private function makeReportFile(string $content = '')
     {
-        $filepath = self::REPORT_DIR. self::REPORT_BASENAME;
+        $filepath = $this->getFilepathUrl();
         file_put_contents($filepath, $content);
     }
 
@@ -122,27 +153,7 @@ final class FileReportRouteTest extends AbstractReportRouteTest
      */
     private function makeReportDir()
     {
-        mkdir(self::REPORT_DIR, 0777, true);
-    }
-
-    /**
-     * @return void
-     */
-    private function removeReportDir()
-    {
-        $this->removeDirInternal(self::REPORT_DIR);
-    }
-
-    /**
-     * @return void
-     */
-    private function removeDirInternal(string $dir)
-    {
-        $files = array_diff(@scandir($dir) ?: [], ['.', '..']);
-        foreach ($files as $file) {
-            (is_dir("$dir/$file")) ? $this->removeDirInternal("$dir/$file") : @unlink("$dir/$file");
-        }
-        @rmdir($dir);
+        mkdir($this->vfsStreamDirectory->url() . '/' . self::REPORT_DIR, 0777, true);
     }
 
 }
