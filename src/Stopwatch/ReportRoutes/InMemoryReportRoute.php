@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes;
 
-class TestReportRoute implements Common\ReportRouteInterface
+class InMemoryReportRoute implements Common\ReportRouteInterface
 {
     /**
      * @var string

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
 use Almasmurad\Stopwatch\Stopwatch;
-use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\TestReportRoute;
+use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\InMemoryReportRoute;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
 
 class StopwatchTest extends AbstractTest
@@ -76,7 +76,7 @@ class StopwatchTest extends AbstractTest
     public function testWithReportRoute()
     {
         // Given
-        $testReportRoute = new TestReportRoute();
+        $testReportRoute = new InMemoryReportRoute();
         $stopwatch = (new Stopwatch())->withReportRoute($testReportRoute);
 
         // When
