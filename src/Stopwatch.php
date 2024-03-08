@@ -10,8 +10,15 @@ use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\FileReportRoute;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\StdoutReportRoute;
+use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
+use Almasmurad\Stopwatch\Stopwatch\State\State;
 use Almasmurad\Stopwatch\Stopwatch\StopwatchInterface;
 
+/**
+ * Class Stopwatch represents a stopwatch that can be used to measure elapsed time.
+ *
+ * @api
+ */
 final class Stopwatch implements StopwatchInterface
 {
     /**
@@ -19,14 +26,13 @@ final class Stopwatch implements StopwatchInterface
      * @readonly
      */
     private $createTimestamp;
+
     /**
-     * @var float
+     * @var StateInterface
+     * @readonly
      */
-    private $startTimestamp = 0;
-    /**
-     * @var float
-     */
-    private $stopTimestamp = 0;
+    private $state;
+
     /**
      * @var float
      */
@@ -47,12 +53,13 @@ final class Stopwatch implements StopwatchInterface
         $this->createTimestamp = $this->getCurrentTimestamp();
         $this->notices = new NoticesCollection();
         $this->reportRoute = $this->getDefaultReportRoute();
+        $this->state = new State();
     }
 
     public function start(): StopwatchInterface
     {
         if (!$this->skipStartIfNecessary()) {
-            $this->startTimestamp = $this->getCurrentTimestamp();
+            $this->state->setStartTimestamp($this->getCurrentTimestamp());
         };
         return $this;
     }
@@ -60,7 +67,7 @@ final class Stopwatch implements StopwatchInterface
     public function stop(): StopwatchInterface
     {
         if (!$this->skipStopIfNecessary()) {
-            $this->stopTimestamp = $this->getCurrentTimestamp();
+            $this->state->setFinishTimestamp($this->getCurrentTimestamp());
             $this->correctStartTimestampIfNecessary();
         }
         return $this;
@@ -99,7 +106,7 @@ final class Stopwatch implements StopwatchInterface
 
     private function skipStartIfNecessary(): bool
     {
-        if ($this->startTimestamp) {
+        if ($this->state->isStartTimestampSet()) {
             $this->notices->addNotice(new StartSkippedNotice());
             return true;
         }
@@ -108,7 +115,7 @@ final class Stopwatch implements StopwatchInterface
 
     private function skipStopIfNecessary(): bool
     {
-        if ($this->stopTimestamp) {
+        if ($this->state->isFinishTimestampSet()) {
             $this->notices->addNotice(new StopSkippedNotice());
             return true;
         }
@@ -120,8 +127,8 @@ final class Stopwatch implements StopwatchInterface
      */
     private function correctStartTimestampIfNecessary()
     {
-        if (!$this->startTimestamp) {
-            $this->startTimestamp = $this->createTimestamp;
+        if (!$this->state->isStartTimestampSet()) {
+            $this->state->setStartTimestamp($this->createTimestamp);
         }
     }
 
@@ -130,8 +137,8 @@ final class Stopwatch implements StopwatchInterface
      */
     private function correctStopTimestampIfNecessary()
     {
-        if (!$this->stopTimestamp) {
-            $this->stopTimestamp = $this->reportTimestamp;
+        if (!$this->state->isFinishTimestampSet()) {
+            $this->state->setFinishTimestamp($this->reportTimestamp);
         }
     }
 
@@ -158,9 +165,9 @@ final class Stopwatch implements StopwatchInterface
      */
     private function makeReport(): string
     {
-        $elapsed = $this->stopTimestamp - $this->startTimestamp;
+        $elapsed = $this->state->getFinishTimestamp() - $this->state->getStartTimestamp();
 
-        $startedStr = date('r', (int)$this->startTimestamp);
+        $startedStr = date('r', (int)$this->state->getStartTimestamp());
         $elapsedStr = number_format($elapsed, 3, '.', ' ');
 
         $message = "Started at {$startedStr}\n";
