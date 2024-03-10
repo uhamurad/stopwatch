@@ -43,7 +43,7 @@ final class Event implements EventInterface
      */
     public function getDateTime(): \DateTimeInterface
     {
-        $parts = explode(".", (string)$this->time);
+        $parts = explode(".", (string)$this->getTimestamp());
         $integerPart = (int)$parts[0];
         $fractionalPart = $parts[1] ?? "0";
         return new \DateTimeImmutable(date("Y-m-d H:i:s.", $integerPart) . $fractionalPart);
@@ -51,7 +51,7 @@ final class Event implements EventInterface
 
     public function getTimestamp(): float
     {
-        return $this->time;
+        return max($this->time, 0);
     }
 
     public function isHappened(): bool
