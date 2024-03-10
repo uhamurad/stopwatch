@@ -7,6 +7,7 @@ namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 use Almasmurad\Stopwatch\Stopwatch;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\InMemoryReportRoute;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
+use org\bovigo\vfs\vfsStream;
 
 class StopwatchTest extends AbstractTest
 {
@@ -35,13 +36,11 @@ class StopwatchTest extends AbstractTest
     public function testReportToFile()
     {
         // Given
-        $dir = __DIR__.'/runtime/report';
-        $filepath = $dir.'/report.txt';
+        $vfsStreamDirectory = vfsStream::setup();
+        $filepath = $vfsStreamDirectory->url().'/report/report.txt';
         $stopwatch = new Stopwatch();
 
         // When
-        @rmdir($dir);
-        @unlink($filepath);
         list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
         $stopwatch->reportToFile($filepath);
 
@@ -58,12 +57,11 @@ class StopwatchTest extends AbstractTest
     public function testReportWhenRouteThrowsException()
     {
         // Given
-        $dir = __DIR__.'/runtime/report';
-        $filepath = $dir.'/';
+        $vfsStreamDirectory = vfsStream::setup();
+        $filepath = $vfsStreamDirectory->url().'/report/';
         $stopwatch = new Stopwatch();
 
         // When
-        @rmdir($dir);
         $this->simpleAct($stopwatch);
         $stopwatch->reportToFile($filepath);
 
