@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Event;
 
 use Almasmurad\Stopwatch\Stopwatch\Event\Event;
+use Almasmurad\Stopwatch\Tests\Stopwatch\Common\TimestampsProvidersTrait;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
 class EventTest extends TestCase
 {
+    use TimestampsProvidersTrait;
+
     /**
      * @return void
      * @dataProvider provideInvalidTimestamp
@@ -82,28 +85,4 @@ class EventTest extends TestCase
         $this->assertEquals(0, (float)$event->getDateTime()->format('U.u'));
     }
 
-    /**
-     * @return float[][]
-     */
-    public function provideValidTimestamp(): array
-    {
-        return [
-            'empty timestamp' => [0.0],
-            'integer timestamp' => [1234567890.0],
-            'simple timestamp' => [1234567890.123],
-        ];
-    }
-
-    /**
-     * @return float[][]
-     */
-    public function provideInvalidTimestamp(): array
-    {
-        return [
-            'small timestamp' => [-0.000000001],
-            'one timestamp' => [-1.0],
-            'integer timestamp' => [-1234567890.0],
-            'simple timestamp' => [-1234567890.123],
-        ];
-    }
 }
