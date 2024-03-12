@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\State;
 
+use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
+
 /**
  * The State class represents the state of stopwatch
  *
  * @internal
  */
-final class State implements Common\StateInterface
+final class State implements StateInterface
 {
     const NULL_TIMESTAMP = -1.0;
 
@@ -33,11 +35,17 @@ final class State implements Common\StateInterface
         return $this->finishTimestamp;
     }
 
+    /**
+     * @return void
+     */
     public function setStartTimestamp(float $timestamp)
     {
         $this->startTimestamp = $timestamp;
     }
 
+    /**
+     * @return void
+     */
     public function setFinishTimestamp(float $timestamp)
     {
         $this->finishTimestamp = $timestamp;

@@ -7,10 +7,11 @@ namespace Almasmurad\Stopwatch;
 use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
+use Almasmurad\Stopwatch\Stopwatch\Report\Factory\ReportFactory;
+use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\FileReportRoute;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\StdoutReportRoute;
-use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
 use Almasmurad\Stopwatch\Stopwatch\State\State;
 use Almasmurad\Stopwatch\Stopwatch\StopwatchInterface;
 
@@ -28,7 +29,7 @@ final class Stopwatch implements StopwatchInterface
     private $createTimestamp;
 
     /**
-     * @var StateInterface
+     * @var State
      * @readonly
      */
     private $state;
@@ -85,6 +86,13 @@ final class Stopwatch implements StopwatchInterface
         $this->processReport($message);
 
         return $this;
+    }
+
+    public function getReport(): ReportInterface
+    {
+        $factory = new ReportFactory();
+        $report = $factory->createFromState($this->state);
+        return $report;
     }
 
     public function reportToFile(string $filepath): StopwatchInterface

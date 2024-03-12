@@ -6,7 +6,7 @@ namespace Almasmurad\Stopwatch\Stopwatch\Report\Factory;
 
 use Almasmurad\Stopwatch\Stopwatch\Report\Report;
 use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
-use Almasmurad\Stopwatch\Stopwatch\State\Common\StateImmutableInterface;
+use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
 
 /**
  * Class ReportFactory is responsible for creating a Report object from a given State.
@@ -15,7 +15,7 @@ use Almasmurad\Stopwatch\Stopwatch\State\Common\StateImmutableInterface;
  */
 final class ReportFactory
 {
-    public function createFromState(StateImmutableInterface $state): ReportInterface
+    public function createFromState(StateInterface $state): ReportInterface
     {
         $this->validateState($state);
         $report = new Report();
@@ -26,10 +26,10 @@ final class ReportFactory
     }
 
     /**
-     * @param StateImmutableInterface $state
+     * @param StateInterface $state
      * @return void
      */
-    private function validateState(StateImmutableInterface $state)
+    private function validateState(StateInterface $state)
     {
         if (!$state->isComplete()) {
             throw new \DomainException('State is not complete');

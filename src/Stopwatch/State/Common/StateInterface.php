@@ -5,18 +5,17 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch\Stopwatch\State\Common;
 
 /**
- * StateInterface defines the methods for managing state timestamps.
+ * Interface StateInterface defines methods for retrieving various timestamps of a state.
  */
-interface StateInterface extends StateImmutableInterface
+interface StateInterface
 {
-    /**
-     * @return void
-     */
-    public function setStartTimestamp(float $timestamp);
+    public function getStartTimestamp(): float;
 
-    /**
-     * @param float $timestamp
-     * @return void
-     */
-    public function setFinishTimestamp(float $timestamp);
+    public function isStartTimestampSet(): bool;
+
+    public function getFinishTimestamp(): float;
+
+    public function isFinishTimestampSet(): bool;
+
+    public function isComplete(): bool;
 }
