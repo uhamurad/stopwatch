@@ -11,15 +11,17 @@ namespace Almasmurad\Stopwatch\Stopwatch\State;
  */
 final class State implements Common\StateInterface
 {
-    /**
-     * @var float
-     */
-    private $startTimestamp = 0.0;
+    const NULL_TIMESTAMP = -1.0;
 
     /**
      * @var float
      */
-    private $finishTimestamp = 0.0;
+    private $startTimestamp = self::NULL_TIMESTAMP;
+
+    /**
+     * @var float
+     */
+    private $finishTimestamp = self::NULL_TIMESTAMP;
 
     public function getStartTimestamp(): float
     {
@@ -43,11 +45,16 @@ final class State implements Common\StateInterface
 
     public function isStartTimestampSet(): bool
     {
-        return $this->startTimestamp !== 0.0;
+        return $this->startTimestamp !== self::NULL_TIMESTAMP;
     }
 
     public function isFinishTimestampSet(): bool
     {
-        return $this->finishTimestamp !== 0.0;
+        return $this->finishTimestamp !== self::NULL_TIMESTAMP;
+    }
+
+    public function isComplete(): bool
+    {
+        return $this->isStartTimestampSet() && $this->isFinishTimestampSet();
     }
 }

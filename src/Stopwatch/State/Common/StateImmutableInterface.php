@@ -16,4 +16,6 @@ interface StateImmutableInterface
     public function getFinishTimestamp(): float;
 
     public function isFinishTimestampSet(): bool;
+
+    public function isComplete(): bool;
 }

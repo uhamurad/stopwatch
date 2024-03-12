@@ -15,7 +15,7 @@ class StateTest extends TestCase
     public function testGetStartTimestampWhenStateJustCreated()
     {
         $state = new State();
-        $this->assertEquals(0, $state->getStartTimestamp());
+        $this->assertEquals(State::NULL_TIMESTAMP, $state->getStartTimestamp());
     }
 
     /**
@@ -35,7 +35,7 @@ class StateTest extends TestCase
     public function testGetFinishTimestampWhenStateJustCreated()
     {
         $state = new State();
-        $this->assertEquals(0, $state->getFinishTimestamp());
+        $this->assertEquals(State::NULL_TIMESTAMP, $state->getFinishTimestamp());
     }
 
     /**
@@ -67,7 +67,7 @@ class StateTest extends TestCase
     {
         $state = new State();
         $state->setStartTimestamp($timestamp);
-        $this->assertEquals($timestamp !== 0.0, $state->isStartTimestampSet());
+        $this->assertEquals($timestamp !== State::NULL_TIMESTAMP, $state->isStartTimestampSet());
     }
 
     /**
@@ -87,7 +87,46 @@ class StateTest extends TestCase
     {
         $state = new State();
         $state->setFinishTimestamp($timestamp);
-        $this->assertEquals($timestamp !== 0.0, $state->isFinishTimestampSet());
+        $this->assertEquals($timestamp !== State::NULL_TIMESTAMP, $state->isFinishTimestampSet());
+    }
+
+    /**
+     * @return void
+     */
+    public function testIsCompleteWhenJustCreated()
+    {
+        $state = new State();
+        $this->assertFalse($state->isComplete());
+    }
+
+    /**
+     * @return void
+     */
+    public function testIsCompleteWhenStartSet()
+    {
+        $state = new State();
+        $state->setStartTimestamp(1234567890.123);
+        $this->assertFalse($state->isComplete());
+    }
+
+    /**
+     * @return void
+     */
+    public function testIsCompleteWhenFinishSet()
+    {
+        $state = new State();
+        $state->setFinishTimestamp(1234567890.123);
+        $this->assertFalse($state->isComplete());
+    }
+    /**
+     * @return void
+     */
+    public function testIsCompleteWhenStartAndFinishSet()
+    {
+        $state = new State();
+        $state->setStartTimestamp(234567890.123);
+        $state->setFinishTimestamp(1234567890.123);
+        $this->assertTrue($state->isComplete());
     }
 
     /**
