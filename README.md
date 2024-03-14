@@ -36,6 +36,19 @@ $stopwatch->reportToFile(__DIR__.'/report.txt');
 Report will be written to a file, and nothing will get into the standard output. If the file `report.txt ` already exists, the report will replace its contents.
 
 
+### Access to the Report components
+
+Instead of outputting the report to a standard stream or file, you can access its components: Stopwatch start and end events, as well as the duration of its work. To do this, use the `getReport()` method:
+
+```php
+$report = $stopwatch->getReport();
+
+$startedAt  = $report->getStartEvent()->getTimestamp();
+$finishedAt = $report->getFinishEvent()->getTimestamp();
+$elapsed    = $report->getAllTime()->getSeconds();
+```
+
+
 ## Additional Features
 
 Using the `start()` and `stop()` methods, you can measure a separate section of the code:

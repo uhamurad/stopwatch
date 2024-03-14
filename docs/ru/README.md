@@ -34,6 +34,18 @@ $stopwatch->reportToFile(__DIR__.'/report.txt');
 ```
 В результате в отчёт будет записан в файл, а в стандартный поток вывода не попадет ничего. Если файл `report.txt` уже существовует, отчёт заменит его содержимое. 
 
+### Доступ к составляющим отчёта
+
+Вместо вывода отчёта в стандартный поток или файл, можно получить доступ к его составляющим: событиям начала и конца работы Stopwatch, а также продолжительности его работы. Для этого воспользуйтесь методом `getReport()`:
+
+
+```php
+$report = $stopwatch->getReport();
+
+$startedAt  = $report->getStartEvent()->getTimestamp();
+$finishedAt = $report->getFinishEvent()->getTimestamp();
+$elapsed    = $report->getAllTime()->getSeconds();
+```
 
 ## Дополнительные возможности
 
