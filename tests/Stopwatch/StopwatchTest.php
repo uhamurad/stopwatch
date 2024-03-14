@@ -14,6 +14,28 @@ class StopwatchTest extends AbstractTest
     /**
      * @return void
      */
+    public function testGetReport()
+    {
+        // Given
+        $stopwatch = new Stopwatch();
+
+        // When
+        list($beforeStartTimestamp, $afterStartTimestamp, $afterFinishTimestamp) = $this->simpleAct($stopwatch);
+        $report = $stopwatch->getReport();
+
+        // Then
+        $this->assertGreaterThanOrEqual($beforeStartTimestamp, $report->getStartEvent()->getTimestamp());
+        $this->assertLessThanOrEqual($afterStartTimestamp, $report->getStartEvent()->getTimestamp());
+
+        $this->assertGreaterThanOrEqual($afterStartTimestamp, $report->getFinishEvent()->getTimestamp());
+        $this->assertLessThanOrEqual($afterFinishTimestamp, $report->getFinishEvent()->getTimestamp());
+
+        $this->assertGreaterThanOrEqual($afterFinishTimestamp - $beforeStartTimestamp, $report->getStartEvent()->getTimestamp());
+    }
+
+    /**
+     * @return void
+     */
     public function testReport()
     {
         // Given

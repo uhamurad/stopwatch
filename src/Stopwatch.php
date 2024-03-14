@@ -91,8 +91,7 @@ final class Stopwatch implements StopwatchInterface
     public function getReport(): ReportInterface
     {
         $factory = new ReportFactory();
-        $report = $factory->createFromState($this->state);
-        return $report;
+        return $factory->createFromState($this->state);
     }
 
     public function reportToFile(string $filepath): StopwatchInterface
