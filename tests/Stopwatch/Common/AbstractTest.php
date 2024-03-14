@@ -47,8 +47,10 @@ abstract class AbstractTest extends TestCase
     {
         $beforeStartTimestamp = microtime(true);
         $stopwatch->start();
+        usleep(rand(100, 100000));
         $afterStartTimestamp = microtime(true);
         $stopwatch->stop();
-        return [$beforeStartTimestamp, $afterStartTimestamp];
+        $afterFinishTimestamp = microtime(true);
+        return [$beforeStartTimestamp, $afterStartTimestamp, $afterFinishTimestamp];
     }
 }
