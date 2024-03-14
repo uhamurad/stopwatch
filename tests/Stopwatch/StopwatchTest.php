@@ -14,7 +14,7 @@ class StopwatchTest extends AbstractTest
     /**
      * @return void
      */
-    public function testGetReport()
+    public function testGetReportWhenNoNotices()
     {
         // Given
         $stopwatch = new Stopwatch();
@@ -23,7 +23,7 @@ class StopwatchTest extends AbstractTest
         list($beforeStartTimestamp, $afterStartTimestamp, $afterFinishTimestamp) = $this->simpleAct($stopwatch);
         $report = $stopwatch->getReport();
 
-        // Then
+        // Then events and times
         $this->assertGreaterThanOrEqual($beforeStartTimestamp, $report->getStartEvent()->getTimestamp());
         $this->assertLessThanOrEqual($afterStartTimestamp, $report->getStartEvent()->getTimestamp());
 
@@ -31,6 +31,29 @@ class StopwatchTest extends AbstractTest
         $this->assertLessThanOrEqual($afterFinishTimestamp, $report->getFinishEvent()->getTimestamp());
 
         $this->assertGreaterThanOrEqual($afterFinishTimestamp - $beforeStartTimestamp, $report->getStartEvent()->getTimestamp());
+
+        // Then notices
+        $this->assertFalse($report->hasNotices());
+        $this->assertEmpty($report->getNotices());
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetReportWhenHasNotices()
+    {
+        // Given
+        $stopwatch = new Stopwatch();
+
+        // When
+        list($beforeStartTimestamp, $afterStartTimestamp, $afterFinishTimestamp) = $this->simpleAct($stopwatch);
+        $stopwatch->start();
+        $report = $stopwatch->getReport();
+
+        // Then
+        $this->assertTrue($report->hasNotices());
+        $this->assertArrayHasKey(0, $report->getNotices());
+        $this->assertEquals('start() method calling was skipped, because Stopwatch is already started', $report->getNotices()[0]);
     }
 
     /**

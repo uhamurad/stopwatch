@@ -31,6 +31,11 @@ final class Report implements ReportInterface
      */
     private $allSeconds = self::NON_VALUE;
 
+    /**
+     * @var non-empty-string[]
+     */
+    private $notices = [];
+
     public function getStartEvent(): EventInterface
     {
         return $this->makeEvent($this->startTime);
@@ -77,6 +82,31 @@ final class Report implements ReportInterface
             throw new \InvalidArgumentException("Seconds cannot be negative");
         }
         $this->allSeconds = $seconds;
+    }
+
+    /**
+     * @param non-empty-string $notice
+     * @return void
+     */
+    public function addNotice(string $notice)
+    {
+        if (!$notice) {
+            throw new \InvalidArgumentException("Notice cannot be empty");
+        }
+        $this->notices[] = $notice;
+    }
+
+    /**
+     * @return non-empty-string[]
+     */
+    public function getNotices(): array
+    {
+        return $this->notices;
+    }
+
+    public function hasNotices(): bool
+    {
+        return isset($this->notices[0]);
     }
 
     /**

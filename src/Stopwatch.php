@@ -76,13 +76,9 @@ final class Stopwatch implements StopwatchInterface
 
     public function report(): StopwatchInterface
     {
-        $this->reportTimestamp = $this->getCurrentTimestamp();
-
-        $this->correctStartTimestampIfNecessary();
-        $this->correctStopTimestampIfNecessary();
+        $this->handleReportCalling();
 
         $message = $this->makeReport();
-
         $this->processReport($message);
 
         return $this;
@@ -90,8 +86,10 @@ final class Stopwatch implements StopwatchInterface
 
     public function getReport(): ReportInterface
     {
+        $this->handleReportCalling();
+
         $factory = new ReportFactory();
-        return $factory->createFromState($this->state);
+        return $factory->create($this->state, $this->notices);
     }
 
     public function reportToFile(string $filepath): StopwatchInterface
@@ -191,6 +189,19 @@ final class Stopwatch implements StopwatchInterface
             }
         }
         return $message;
+    }
+
+    /**
+     * @return void
+     */
+    private function handleReportCalling()
+    {
+        if (!$this->reportTimestamp) {
+            $this->reportTimestamp = $this->getCurrentTimestamp();
+        }
+
+        $this->correctStartTimestampIfNecessary();
+        $this->correctStopTimestampIfNecessary();
     }
 
 }

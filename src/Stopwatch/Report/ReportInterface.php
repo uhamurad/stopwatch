@@ -19,4 +19,11 @@ interface ReportInterface
     public function getFinishEvent(): EventInterface;
 
     public function getAllTime(): TimeInterface;
+
+    /**
+     * @return non-empty-string[]
+     */
+    public function getNotices(): array;
+
+    public function hasNotices(): bool;
 }

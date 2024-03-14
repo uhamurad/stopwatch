@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\Report\Factory;
 
+use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Report\Report;
 use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
@@ -15,14 +16,39 @@ use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
  */
 final class ReportFactory
 {
-    public function createFromState(StateInterface $state): ReportInterface
+    public function create(StateInterface $state, NoticesCollection $notices): ReportInterface
     {
         $this->validateState($state);
+
         $report = new Report();
+        $this->fillFromState($report, $state);
+        $this->fillFromNotices($report, $notices);
+
+        return $report;
+    }
+
+    /**
+     * @param Report $report
+     * @param NoticesCollection $notices
+     * @return void
+     */
+    private function fillFromNotices(Report $report, NoticesCollection $notices)
+    {
+        foreach ($notices->getAllNotices() as $notice) {
+            $report->addNotice($notice->getText());
+        }
+    }
+
+    /**
+     * @param Report $report
+     * @param StateInterface $state
+     * @return void
+     */
+    private function fillFromState(Report $report, StateInterface $state)
+    {
         $report->setStartTime($state->getStartTimestamp());
         $report->setFinishTime($state->getFinishTimestamp());
         $report->setAllSeconds($state->getFinishTimestamp() - $state->getStartTimestamp());
-        return $report;
     }
 
     /**

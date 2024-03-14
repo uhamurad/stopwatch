@@ -110,4 +110,59 @@ class ReportTest extends TestCase
         $report->setAllSeconds($seconds);
     }
 
+    /**
+     * @return void
+     */
+    public function testAddNoticeWhenSetInvalidNotice()
+    {
+        $report = new Report();
+        $this->expectException(\InvalidArgumentException::class);
+        $report->addNotice(''); /* @phpstan-ignore-line */
+    }
+
+    /**
+     * @return void
+     */
+    public function testHasNoticesWhenJustCreated()
+    {
+        $report = new Report();
+        $this->assertFalse($report->hasNotices());
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetNoticesWhenJustCreated()
+    {
+        $report = new Report();
+        $this->assertEmpty($report->getNotices());
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetNoticesWhenAddOneNotice()
+    {
+        $report = new Report();
+        $notice = 'non-empty-string';
+        $report->addNotice($notice);
+        $this->assertCount(1, $report->getNotices());
+        $this->assertEquals($notice, $report->getNotices()[0]);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetNoticesWhenAddSomeNotices()
+    {
+        $report = new Report();
+        $notice1 = 'non empty string';
+        $notice2 = 'another non empty string';
+        $report->addNotice($notice1);
+        $report->addNotice($notice2);
+        $this->assertCount(2, $report->getNotices());
+        $this->assertEquals($notice1, $report->getNotices()[0]);
+        $this->assertEquals($notice2, $report->getNotices()[1]);
+    }
+
 }
