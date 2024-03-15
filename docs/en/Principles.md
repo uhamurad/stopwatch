@@ -14,4 +14,4 @@ At the same time, the main package may contain modules using native PHP function
 
 ## Stopwatch does not throw errors and exceptions
 
-All erroneous and exceptional situations should be reflected in the report and logs. They should not interrupt the main program.
+All erroneous and exceptional situations should be reflected in the report and logs. They should not interrupt the main program (see [Notices](Notices.md) chapter).

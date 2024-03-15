@@ -77,4 +77,5 @@ Stopwatch will evolve and acquire additional features. An incomplete list of pla
 
 ## Learn more
 
+- [Notices and Erroneous Situations](docs/en/Notices.md)
 - [The Principles by Which Stopwatch Was Created](docs/en/Principles.md)

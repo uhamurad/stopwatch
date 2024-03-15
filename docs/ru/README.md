@@ -75,4 +75,5 @@ Stopwatch будет развиваться и обрастать дополни
 
 ## Больше о Stopwatch
 
-- [Принципы, по которым создавался Stopwatch](docs/ru/Principles.md)
+- [Предупреждения и ошибочные ситуации](Notices.md)
+- [Принципы, по которым создавался Stopwatch](Principles.md)
