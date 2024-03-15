@@ -176,7 +176,7 @@ final class Stopwatch implements StopwatchInterface
         $elapsedStr = number_format($elapsed, 3, '.', ' ');
 
         $message = "Started at {$startedStr}\n";
-        $breakLineLength = mb_strlen($message);
+        $breakLineLength = 42;
         $breakLine = str_repeat('—', $breakLineLength) . "\n";
         $message .= $breakLine;
         $message .= "All time | {$elapsedStr}s\n";
