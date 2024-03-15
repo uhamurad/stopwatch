@@ -21,7 +21,7 @@ $stopwatch->report();
 Started at Sat, 27 Jan 2024 06:55:14 +0000
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 All time | 0.198s
-———————————————————————————————————————————
+——————————————————————————————————————————
 Notices:
  - stop() method calling was skipped, because Stopwatch is already stopped
 ```
