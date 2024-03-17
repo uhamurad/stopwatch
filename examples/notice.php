@@ -17,9 +17,6 @@ $stopwatch->stop();
 // !!! Error - repeated calling the stop() method
 $stopwatch->stop();
 
-// Report about results
-$stopwatch->report();
-
 // Getting notice
 $report = $stopwatch->getReport();
 $notices = $report->getNotices();
