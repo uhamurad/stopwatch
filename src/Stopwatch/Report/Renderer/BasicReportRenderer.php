@@ -7,7 +7,10 @@ namespace Almasmurad\Stopwatch\Stopwatch\Report\Renderer;
 use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
 use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 
-class BasicReportRenderer implements ReportRendererInterface
+/**
+ * Class BasicReportRenderer provides a basic implementation for rendering a report.
+ */
+final class BasicReportRenderer implements ReportRendererInterface
 {
     public function render(ReportInterface $report): string
     {
@@ -19,7 +22,7 @@ class BasicReportRenderer implements ReportRendererInterface
         $allSecondsMeasured = $report->getAllTime()->isMeasured();
 
         if ($allSecondsMeasured) {
-            $elapsedStr = number_format($allSeconds, 3, '.', ' ').'s';
+            $elapsedStr = number_format($allSeconds, 3, '.', ' ') . 's';
         } else {
             $elapsedStr = '[unknown]';
         }
@@ -34,11 +37,11 @@ class BasicReportRenderer implements ReportRendererInterface
         $breakLineLength = 42;
         $breakLine = str_repeat('—', $breakLineLength);
 
-        $message .= "\n".$breakLine;
+        $message .= "\n" . $breakLine;
         $message .= "\nAll time | {$elapsedStr}";
 
         if (count($notices = $report->getNotices()) > 0) {
-            $message .= "\n".$breakLine;
+            $message .= "\n" . $breakLine;
             $message .= "\nNotices:";
             foreach ($notices as $notice) {
                 $message .= "\n - " . $notice;
