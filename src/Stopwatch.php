@@ -8,6 +8,8 @@ use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Report\Factory\ReportFactory;
+use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\BasicReportRenderer;
+use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
 use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\FileReportRoute;
@@ -49,11 +51,17 @@ final class Stopwatch implements StopwatchInterface
      */
     private $reportRoute;
 
+    /**
+     * @var ReportRendererInterface
+     */
+    private $reportRenderer;
+
     public function __construct()
     {
         $this->createTimestamp = $this->getCurrentTimestamp();
         $this->notices = new NoticesCollection();
         $this->reportRoute = $this->getDefaultReportRoute();
+        $this->reportRenderer = $this->getDefaultReportRenderer();
         $this->state = new State();
     }
 
@@ -76,10 +84,9 @@ final class Stopwatch implements StopwatchInterface
 
     public function report(): StopwatchInterface
     {
-        $this->handleReportCalling();
-
-        $message = $this->makeReport();
-        $this->processReport($message);
+        $report = $this->getReport();
+        $reportText = $this->renderReport($report);
+        $this->routeRenderedReport($reportText);
 
         return $this;
     }
@@ -101,6 +108,13 @@ final class Stopwatch implements StopwatchInterface
     {
         $clone = clone $this;
         $clone->reportRoute = $reportRoute;
+        return $clone;
+    }
+
+    public function withReportRenderer(ReportRendererInterface $reportRenderer): StopwatchInterface
+    {
+        $clone = clone $this;
+        $clone->reportRenderer = $reportRenderer;
         return $clone;
     }
 
@@ -152,43 +166,31 @@ final class Stopwatch implements StopwatchInterface
         return new StdoutReportRoute();
     }
 
+    private function getDefaultReportRenderer(): ReportRendererInterface
+    {
+        return new BasicReportRenderer();
+    }
+
     /**
-     * @param string $message
+     * @param string $renderedReport
      * @return void
      */
-    private function processReport(string $message)
+    private function routeRenderedReport(string $renderedReport)
     {
         try {
-            $this->reportRoute->process($message);
+            $this->reportRoute->process($renderedReport);
         } catch (\Throwable $exception) { // @codeCoverageIgnore
 
         }
     }
 
-    /**
-     * @return string
-     */
-    private function makeReport(): string
+    private function renderReport(ReportInterface $report): string
     {
-        $elapsed = $this->state->getFinishTimestamp() - $this->state->getStartTimestamp();
-
-        $startedStr = date('r', (int)$this->state->getStartTimestamp());
-        $elapsedStr = number_format($elapsed, 3, '.', ' ');
-
-        $message = "Started at {$startedStr}\n";
-        $breakLineLength = 42;
-        $breakLine = str_repeat('—', $breakLineLength) . "\n";
-        $message .= $breakLine;
-        $message .= "All time | {$elapsedStr}s\n";
-
-        if ($this->notices->hasNotices()) {
-            $message .= $breakLine;
-            $message .= "Notices:\n";
-            foreach ($this->notices->getAllNotices() as $notice) {
-                $message .= " - " . $notice->getText() . "\n";
-            }
+        try {
+            return $this->reportRenderer->render($report);
+        } catch (\Throwable $exception) {
+            return sprintf('Error due report rendering: %s. Occurred as %s', $exception->getMessage(), date('r'));
         }
-        return $message;
     }
 
     /**
@@ -203,5 +205,6 @@ final class Stopwatch implements StopwatchInterface
         $this->correctStartTimestampIfNecessary();
         $this->correctStopTimestampIfNecessary();
     }
+
 
 }

@@ -19,7 +19,7 @@ class InMemoryReportRoute implements Common\ReportRouteInterface
         $this->report = $report;
     }
 
-    public function getReport(): string
+    public function getRenderedReport(): string
     {
         return $this->report;
     }

@@ -78,6 +78,26 @@ class StopwatchTest extends AbstractTest
     /**
      * @return void
      */
+    public function testReportWhenReportRenderingErrorOccurred()
+    {
+        // Given
+        $route = new InMemoryReportRoute();
+        $renderer = new Stopwatch\Report\Renderer\ThrowingExceptionReportRenderer();
+        $stopwatch = (new Stopwatch())->withReportRoute($route);
+
+        // When
+        $stopwatch = $stopwatch->withReportRenderer($renderer);
+        list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
+
+        // Then
+        $stopwatch->report();
+        $renderedReport = $route->getRenderedReport();
+        $this->assertContains('Error due report rendering', $renderedReport);
+    }
+
+    /**
+     * @return void
+     */
     public function testReportToFile()
     {
         // Given
@@ -120,14 +140,37 @@ class StopwatchTest extends AbstractTest
     {
         // Given
         $testReportRoute = new InMemoryReportRoute();
-        $stopwatch = (new Stopwatch())->withReportRoute($testReportRoute);
+        $stopwatch = new Stopwatch();
 
         // When
+        $stopwatch = $stopwatch->withReportRoute($testReportRoute);
         list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
         $stopwatch->report();
 
         // Then
-        $output = $testReportRoute->getReport();
+        $output = $testReportRoute->getRenderedReport();
+        $this->assertStartedAtLabel($output);
+        $this->assertStartedAtValue($output, $beforeStartTimestamp, $afterStartTimestamp);
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testWithReportRenderer()
+    {
+        // Given
+        $route = new InMemoryReportRoute();
+        $renderer = new Stopwatch\Report\Renderer\BasicReportRenderer();
+        $stopwatch = (new Stopwatch())->withReportRoute($route);
+
+        // When
+        $stopwatch = $stopwatch->withReportRenderer($renderer);
+        list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
+
+        // Then
+        $stopwatch->report();
+        $output = $route->getRenderedReport();
         $this->assertStartedAtLabel($output);
         $this->assertStartedAtValue($output, $beforeStartTimestamp, $afterStartTimestamp);
     }
