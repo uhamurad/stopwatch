@@ -16,8 +16,6 @@ final class BasicReportRenderer implements ReportRendererInterface
     {
         $startTime = $report->getStartEvent()->getTimestamp();
         $startHappened = $report->getStartEvent()->isHappened();
-        $finishTime = $report->getFinishEvent()->getTimestamp();
-        $finishHappened = $report->getFinishEvent()->isHappened();
         $allSeconds = $report->getAllTime()->getSeconds();
         $allSecondsMeasured = $report->getAllTime()->isMeasured();
 
