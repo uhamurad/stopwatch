@@ -10,12 +10,12 @@
 ```php
 $stopwatch = new Almasmurad\Stopwatch\Stopwatch();
 $stopwatch->start();   // запуск измерение
-$stopwatch->stop();    // остановка измерение
-$stopwatch->stop();    // !!! ошибка - повторный вызов метода stop 
+$stopwatch->finish();    // остановка измерение
+$stopwatch->finish();    // !!! ошибка - повторный вызов метода finish 
 $stopwatch->report();
 ```
 
-В этом примере метод `stop` вызывается 2 раза. Это ошибочная ситуация, и предупреждение о ее появлении будет содержаться в отчёте:
+В этом примере метод `finish` вызывается 2 раза. Это ошибочная ситуация, и предупреждение о ее появлении будет содержаться в отчёте:
 
 ```
 Started at Sat, 27 Jan 2024 06:55:14 +0000
@@ -23,7 +23,7 @@ Started at Sat, 27 Jan 2024 06:55:14 +0000
 All time | 0.198s
 ——————————————————————————————————————————
 Notices:
- - stop() method calling was skipped, because Stopwatch is already stopped
+ - finish() method calling was skipped, because Stopwatch is already finished
 ```
 
 С помощью метода `getReport` можно получить текст всех предупреждений:

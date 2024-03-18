@@ -11,11 +11,11 @@ $html = file_get_contents('https://csszengarden.com/examples/index') ?: '';
 preg_match_all('/\bhttps?:\/\/[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|\/))/i', $html, $match);
 $urls = $match[0];
 
-// Stop measuring
-$stopwatch->stop();
+// Finish measuring
+$stopwatch->finish();
 
-// !!! Error - repeated calling the stop() method
-$stopwatch->stop();
+// !!! Error - repeated calling the finish() method
+$stopwatch->finish();
 
 // Getting notice
 $report = $stopwatch->getReport();

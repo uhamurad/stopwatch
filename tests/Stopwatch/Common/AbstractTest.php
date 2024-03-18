@@ -49,7 +49,7 @@ abstract class AbstractTest extends TestCase
         $stopwatch->start();
         usleep(rand(100, 100000));
         $afterStartTimestamp = microtime(true);
-        $stopwatch->stop();
+        $stopwatch->finish();
         $afterFinishTimestamp = microtime(true);
         return [$beforeStartTimestamp, $afterStartTimestamp, $afterFinishTimestamp];
     }

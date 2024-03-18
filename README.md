@@ -51,7 +51,7 @@ $elapsed    = $report->getAllTime()->getSeconds();
 
 ## Additional Features
 
-Using the `start()` and `stop()` methods, you can measure a separate section of the code:
+Using the `start()` and `finish()` methods, you can measure a separate section of the code:
 
 ```php
 $stopwatch = new Almasmurad\Stopwatch\Stopwatch();
@@ -60,7 +60,7 @@ $stopwatch->start();   // start measuring
 
 //... (measured code)
 
-$stopwatch->stop();    // stop measuring
+$stopwatch->finish();    // finish measuring
 //... 
 $stopwatch->report();
 ```
@@ -69,9 +69,9 @@ $stopwatch->report();
 ## Future Plans
 
 Stopwatch will evolve and acquire additional features. An incomplete list of planned changes:
-- Adding the `split()` method, which can be used to measure the time of each stage of the process.
+- Adding the `step()` method, which can be used to measure the time of each stage of the process.
 - Adding the ability to measure not only time, but also peak memory usage.
-- Adding the ability to measure a repeatable process when the `start()` and `stop()` methods are called multiple times.
+- Adding the ability to measure a repeatable process when the `start()` and `finish()` methods are called multiple times.
 
 
 ## Learn more

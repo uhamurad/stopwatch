@@ -12,9 +12,9 @@ class NoticesTest extends TestCase
     const ERRORS_LABEL = 'Errors';
     const NOTICES_LABEL = 'Notices';
     const MSG_START_SKIPPED = 'start() method calling was skipped, because Stopwatch is already started';
-    const MSG_STOP_SKIPPED = 'stop() method calling was skipped, because Stopwatch is already stopped';
+    const MSG_FINISH_SKIPPED = 'finish() method calling was skipped, because Stopwatch is already finished';
     const START = 'start';
-    const STOP = 'stop';
+    const FINISH = 'finish';
     const REPORT = 'report';
 
 
@@ -49,7 +49,7 @@ class NoticesTest extends TestCase
                 [],
             ],
             [
-                [self::STOP],
+                [self::FINISH],
                 [],
             ],
             [
@@ -59,7 +59,7 @@ class NoticesTest extends TestCase
 
             // 2 methods
             [
-                [self::START, self::STOP],
+                [self::START, self::FINISH],
                 [],
             ],
             [
@@ -67,11 +67,11 @@ class NoticesTest extends TestCase
                 [],
             ],
             [
-                [self::STOP, self::START],
+                [self::FINISH, self::START],
                 [],
             ],
             [
-                [self::STOP, self::REPORT],
+                [self::FINISH, self::REPORT],
                 [],
             ],
             [
@@ -79,50 +79,50 @@ class NoticesTest extends TestCase
                 [],
             ],
             [
-                [self::REPORT, self::STOP],
+                [self::REPORT, self::FINISH],
                 [],
             ],
 
             // 3 methods
             [
-                [self::START, self::STOP, self::REPORT],
+                [self::START, self::FINISH, self::REPORT],
                 [],
             ],
             [
-                [self::START, self::REPORT, self::STOP],
+                [self::START, self::REPORT, self::FINISH],
                 [],
             ],
 
             [
-                [self::STOP, self::START, self::REPORT],
+                [self::FINISH, self::START, self::REPORT],
                 [self::MSG_START_SKIPPED],
             ],
             [
-                [self::STOP, self::REPORT, self::START],
+                [self::FINISH, self::REPORT, self::START],
                 [],
             ],
 
             [
-                [self::REPORT, self::START, self::STOP],
+                [self::REPORT, self::START, self::FINISH],
                 [],
             ],
             [
-                [self::REPORT, self::STOP, self::START],
+                [self::REPORT, self::FINISH, self::START],
                 [],
             ],
 
             // with repeats
             [
-                [self::START, self::START, self::STOP, self::REPORT],
+                [self::START, self::START, self::FINISH, self::REPORT],
                 [self::MSG_START_SKIPPED],
             ],
             [
-                [self::START, self::STOP, self::STOP, self::REPORT],
-                [self::MSG_STOP_SKIPPED],
+                [self::START, self::FINISH, self::FINISH, self::REPORT],
+                [self::MSG_FINISH_SKIPPED],
             ],
             [
-                [self::START, self::START, self::STOP, self::STOP, self::REPORT],
-                [self::MSG_START_SKIPPED, self::MSG_STOP_SKIPPED],
+                [self::START, self::START, self::FINISH, self::FINISH, self::REPORT],
+                [self::MSG_START_SKIPPED, self::MSG_FINISH_SKIPPED],
             ],
 
         ];
@@ -141,14 +141,14 @@ class NoticesTest extends TestCase
                 case self::START:
                     $stopwatch->start();
                     break;
-                case self::STOP:
-                    $stopwatch->stop();
+                case self::FINISH:
+                    $stopwatch->finish();
                     break;
                 case self::REPORT:
                     $stopwatch->report();
                     break;
                 default:
-                    throw new \InvalidArgumentException(sprintf('Method "%s" of BaseStopwatch is unknown', $method));
+                    throw new \InvalidArgumentException(sprintf('Method "%s" of Stopwatch is unknown', $method));
             }
         }
         return $this->getActualOutput();

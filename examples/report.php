@@ -11,8 +11,8 @@ $html = file_get_contents('https://csszengarden.com/examples/index') ?: '';
 preg_match_all('/\bhttps?:\/\/[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|\/))/i', $html, $match);
 $urls = $match[0];
 
-// Stop measuring
-$stopwatch->stop();
+// Finish measuring
+$stopwatch->finish();
 
 // Option 1. Print report to standard output
 $stopwatch->report();

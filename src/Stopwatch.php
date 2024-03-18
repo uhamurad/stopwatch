@@ -6,7 +6,7 @@ namespace Almasmurad\Stopwatch;
 
 use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
-use Almasmurad\Stopwatch\Stopwatch\Notices\StopSkippedNotice;
+use Almasmurad\Stopwatch\Stopwatch\Notices\FinishSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Report\Factory\ReportFactory;
 use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\BasicReportRenderer;
 use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
@@ -73,9 +73,9 @@ final class Stopwatch implements StopwatchInterface
         return $this;
     }
 
-    public function stop(): StopwatchInterface
+    public function finish(): StopwatchInterface
     {
-        if (!$this->skipStopIfNecessary()) {
+        if (!$this->skipFinishIfNecessary()) {
             $this->state->setFinishTimestamp($this->getCurrentTimestamp());
             $this->correctStartTimestampIfNecessary();
         }
@@ -132,10 +132,10 @@ final class Stopwatch implements StopwatchInterface
         return false;
     }
 
-    private function skipStopIfNecessary(): bool
+    private function skipFinishIfNecessary(): bool
     {
         if ($this->state->isFinishTimestampSet()) {
-            $this->notices->addNotice(new StopSkippedNotice());
+            $this->notices->addNotice(new FinishSkippedNotice());
             return true;
         }
         return false;
@@ -154,7 +154,7 @@ final class Stopwatch implements StopwatchInterface
     /**
      * @return void
      */
-    private function correctStopTimestampIfNecessary()
+    private function correctFinishTimestampIfNecessary()
     {
         if (!$this->state->isFinishTimestampSet()) {
             $this->state->setFinishTimestamp($this->reportTimestamp);
@@ -203,7 +203,7 @@ final class Stopwatch implements StopwatchInterface
         }
 
         $this->correctStartTimestampIfNecessary();
-        $this->correctStopTimestampIfNecessary();
+        $this->correctFinishTimestampIfNecessary();
     }
 
 

@@ -10,7 +10,7 @@ interface StopwatchWithoutSugarInterface
 {
     public function start(): StopwatchInterface;
 
-    public function stop(): StopwatchInterface;
+    public function finish(): StopwatchInterface;
 
     public function report(): StopwatchInterface;
 

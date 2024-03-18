@@ -14,8 +14,8 @@ $stopwatch->start();
 // (measured code)
 preg_match_all('/\bhttps?:\/\/[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|\/))/i', $html, $match);
 
-// Stop measuring
-$stopwatch->stop();
+// Finish measuring
+$stopwatch->finish();
 
 $urls = $match[0];
 
