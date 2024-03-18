@@ -20,11 +20,6 @@ class NoticesCollection
         $this->notices[] = $notice;
     }
 
-    public function hasNotices(): bool
-    {
-        return !empty($this->notices);
-    }
-
     /**
      * @return NoticeInterface[]
      */
