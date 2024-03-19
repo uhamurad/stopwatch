@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
+use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\ThrowingExceptionReportRenderer;
+use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\BasicReportRenderer;
 use Almasmurad\Stopwatch\Stopwatch;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\InMemoryReportRoute;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
@@ -82,7 +84,7 @@ class StopwatchTest extends AbstractTest
     {
         // Given
         $route = new InMemoryReportRoute();
-        $renderer = new Stopwatch\Report\Renderer\ThrowingExceptionReportRenderer();
+        $renderer = new ThrowingExceptionReportRenderer();
         $stopwatch = (new Stopwatch())->withReportRoute($route);
 
         // When
@@ -161,7 +163,7 @@ class StopwatchTest extends AbstractTest
     {
         // Given
         $route = new InMemoryReportRoute();
-        $renderer = new Stopwatch\Report\Renderer\BasicReportRenderer();
+        $renderer = new BasicReportRenderer();
         $stopwatch = (new Stopwatch())->withReportRoute($route);
 
         // When

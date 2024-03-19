@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes;
 
+use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\Exceptions\UnableToProcessReportException;
 
-class FileReportRoute implements Common\ReportRouteInterface
+class FileReportRoute implements ReportRouteInterface
 {
     /**
      * @var string

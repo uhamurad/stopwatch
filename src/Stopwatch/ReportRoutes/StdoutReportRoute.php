@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes;
 
-class StdoutReportRoute implements Common\ReportRouteInterface
+use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
+
+class StdoutReportRoute implements ReportRouteInterface
 {
     /**
      * @inheritDoc
