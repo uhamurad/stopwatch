@@ -34,7 +34,7 @@ abstract class AbstractTest extends TestCase
     {
         $startedLine = strstr($output, "\n", true) ?: '';
         $startedDateStr = substr($startedLine, mb_strlen(self::STARTED_AT));
-        if ($startedDateStr === false){
+        if ($startedDateStr == false) {
             $startedDateStr = '';
         }
         $startedDateTimestamp = strtotime($startedDateStr);
