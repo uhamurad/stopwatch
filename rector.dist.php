@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Privatization\Rector\ClassMethod\PrivatizeFinalClassMethodRector;
+use Rector\Privatization\Rector\Property\PrivatizeFinalClassPropertyRector;
+use Rector\Removing\Rector\ClassMethod\ArgumentRemoverRector;
 use Rector\ValueObject\PhpVersion;
 use Rector\CodeQuality\Rector\If_\ConsecutiveNullCompareReturnsToNullCoalesceQueueRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
@@ -58,5 +61,8 @@ return RectorConfig::configure()
         NullableCompareToNullRector::class,
         SymplifyQuoteEscapeRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
+        PrivatizeFinalClassMethodRector::class,
+        PrivatizeFinalClassPropertyRector::class,
+        ArgumentRemoverRector::class
     ])
-    ->withPreparedSets(deadCode: true, earlyReturn: true, instanceOf: true);
+    ->withPreparedSets(deadCode: true, earlyReturn: true, instanceOf: true, strictBooleans: true, typeDeclarations: true);
