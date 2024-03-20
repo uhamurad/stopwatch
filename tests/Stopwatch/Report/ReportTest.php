@@ -113,16 +113,6 @@ final class ReportTest extends TestCase
     /**
      * @return void
      */
-    public function testAddNoticeWhenSetInvalidNotice()
-    {
-        $report = new Report();
-        $this->expectException(\InvalidArgumentException::class);
-        $report->addNotice(''); /* @phpstan-ignore-line */
-    }
-
-    /**
-     * @return void
-     */
     public function testHasNoticesWhenJustCreated()
     {
         $report = new Report();

@@ -90,9 +90,6 @@ final class Report implements ReportInterface
      */
     public function addNotice(string $notice)
     {
-        if (!$notice) {
-            throw new \InvalidArgumentException("Notice cannot be empty");
-        }
         $this->notices[] = $notice;
     }
 

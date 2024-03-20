@@ -160,7 +160,7 @@ final class BasicReportRendererTest extends TestCase
      */
     private function assertAndParseNoticesPart(string $noticesPart): array
     {
-        if (!$noticesPart) {
+        if ($noticesPart === '') {
             return [];
         }
 
