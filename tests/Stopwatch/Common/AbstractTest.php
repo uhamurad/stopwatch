@@ -33,7 +33,10 @@ abstract class AbstractTest extends TestCase
     protected function assertStartedAtValue(string $output, float $beforeStartTimestamp, float $afterStartTimestamp)
     {
         $startedLine = strstr($output, "\n", true) ?: '';
-        $startedDateStr = substr($startedLine, mb_strlen(self::STARTED_AT)) ?: '';
+        $startedDateStr = substr($startedLine, mb_strlen(self::STARTED_AT));
+        if ($startedDateStr === false){
+            $startedDateStr = '';
+        }
         $startedDateTimestamp = strtotime($startedDateStr);
 
         $this->assertGreaterThanOrEqual((int)$beforeStartTimestamp, $startedDateTimestamp);
