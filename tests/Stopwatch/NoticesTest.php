@@ -132,8 +132,7 @@ final class NoticesTest extends TestCase
      */
     private function act(Stopwatch $stopwatch, array $methods): string
     {
-        $this->setOutputCallback(function () {
-        });
+        $this->setOutputCallback(function () {});
         foreach ($methods as $method) {
             switch ($method) {
                 case self::START:

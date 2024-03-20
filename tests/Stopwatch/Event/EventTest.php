@@ -71,7 +71,7 @@ final class EventTest extends TestCase
     {
         $event = Event::createHappened($timestamp);
         // note that DateTime::getTimestamp does not support milliseconds
-        $this->assertEquals($timestamp, (float)$event->getDateTime()->format('U.u'));
+        $this->assertEquals($timestamp, (float) $event->getDateTime()->format('U.u'));
     }
 
     /**
@@ -82,7 +82,7 @@ final class EventTest extends TestCase
     {
         $event = Event::createNonHappened();
         // note that DateTime::getTimestamp does not support milliseconds
-        $this->assertEquals(0, (float)$event->getDateTime()->format('U.u'));
+        $this->assertEquals(0, (float) $event->getDateTime()->format('U.u'));
     }
 
 }

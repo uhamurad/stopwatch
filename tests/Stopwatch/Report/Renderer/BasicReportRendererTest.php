@@ -44,7 +44,7 @@ final class BasicReportRendererTest extends TestCase
 
         $text = $renderer->render($report);
         list($headerValue, $bodyValue, $notices) = $this->assertAndParseStructureOfReportText($text);
-        $expectedHeaderValue = date('r', (int)$timestamp);
+        $expectedHeaderValue = date('r', (int) $timestamp);
         $this->assertEquals($expectedHeaderValue, $headerValue);
         $this->assertEquals('[unknown]', $bodyValue);
     }

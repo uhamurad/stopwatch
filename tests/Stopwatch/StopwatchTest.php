@@ -104,7 +104,7 @@ final class StopwatchTest extends AbstractTest
     {
         // Given
         $vfsStreamDirectory = vfsStream::setup();
-        $filepath = $vfsStreamDirectory->url().'/report/report.txt';
+        $filepath = $vfsStreamDirectory->url() . '/report/report.txt';
         $stopwatch = new Stopwatch();
 
         // When
@@ -125,7 +125,7 @@ final class StopwatchTest extends AbstractTest
     {
         // Given
         $vfsStreamDirectory = vfsStream::setup();
-        $filepath = $vfsStreamDirectory->url().'/report/';
+        $filepath = $vfsStreamDirectory->url() . '/report/';
         $stopwatch = new Stopwatch();
 
         // When

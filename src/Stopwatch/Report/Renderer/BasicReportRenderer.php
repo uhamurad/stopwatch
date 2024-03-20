@@ -21,7 +21,7 @@ final class BasicReportRenderer implements ReportRendererInterface
 
         $elapsedStr = $allSecondsMeasured ? number_format($allSeconds, 3, '.', ' ') . 's' : '[unknown]';
 
-        $startedStr = $startHappened ? date('r', (int)$startTime) : '[unknown]';
+        $startedStr = $startHappened ? date('r', (int) $startTime) : '[unknown]';
 
         $message = "Started at {$startedStr}";
         $breakLineLength = 42;

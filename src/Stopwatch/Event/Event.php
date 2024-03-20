@@ -43,8 +43,8 @@ final class Event implements EventInterface
      */
     public function getDateTime(): \DateTimeInterface
     {
-        $parts = explode(".", (string)$this->getTimestamp());
-        $integerPart = (int)$parts[0];
+        $parts = explode(".", (string) $this->getTimestamp());
+        $integerPart = (int) $parts[0];
         $fractionalPart = $parts[1] ?? "0";
         return new \DateTimeImmutable(date("Y-m-d H:i:s.", $integerPart) . $fractionalPart);
     }

@@ -39,8 +39,8 @@ abstract class AbstractTest extends TestCase
         }
         $startedDateTimestamp = strtotime($startedDateStr);
 
-        $this->assertGreaterThanOrEqual((int)$beforeStartTimestamp, $startedDateTimestamp);
-        $this->assertLessThanOrEqual((int)$afterStartTimestamp, $startedDateTimestamp);
+        $this->assertGreaterThanOrEqual((int) $beforeStartTimestamp, $startedDateTimestamp);
+        $this->assertLessThanOrEqual((int) $afterStartTimestamp, $startedDateTimestamp);
     }
 
     /**

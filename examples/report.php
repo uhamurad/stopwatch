@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 // Create Stopwatch and start measuring
 $stopwatch = new Almasmurad\Stopwatch\Stopwatch();
@@ -18,7 +18,7 @@ $stopwatch->finish();
 $stopwatch->report();
 
 // Option 2. Output report to local file
-$stopwatch->reportToFile(__DIR__.'/report/report.txt');
+$stopwatch->reportToFile(__DIR__ . '/report/report.txt');
 
 // Option 3. Get report object and use its parameters
 $report = $stopwatch->getReport();
