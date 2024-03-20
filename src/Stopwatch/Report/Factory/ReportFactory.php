@@ -8,6 +8,7 @@ use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Report\Report;
 use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
+use Almasmurad\Stopwatch\Stopwatch\State\State;
 
 /**
  * Class ReportFactory is responsible for creating a Report object from a given State.
@@ -42,9 +43,9 @@ final class ReportFactory
      */
     private function fillFromState(Report $report, StateInterface $state)
     {
-        $report->setStartTime($state->getStartTimestamp());
-        $report->setFinishTime($state->getFinishTimestamp());
-        $report->setAllSeconds($state->getFinishTimestamp() - $state->getStartTimestamp());
+        $report->setStartTime($state->getStartEvent()->getTimestamp());
+        $report->setFinishTime($state->getFinishEvent()->getTimestamp());
+        $report->setAllSeconds($state->getFinishEvent()->getTimestamp() - $state->getStartEvent()->getTimestamp());
     }
 
     /**

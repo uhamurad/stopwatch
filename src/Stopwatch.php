@@ -125,7 +125,8 @@ final class Stopwatch implements StopwatchInterface
 
     private function skipStartIfNecessary(): bool
     {
-        if ($this->state->isStartTimestampSet()) {
+        $state = $this->state;
+        if ($state->getStartEvent()->isHappened()) {
             $this->notices->addNotice(new StartSkippedNotice());
             return true;
         }
@@ -134,7 +135,8 @@ final class Stopwatch implements StopwatchInterface
 
     private function skipFinishIfNecessary(): bool
     {
-        if ($this->state->isFinishTimestampSet()) {
+        $state = $this->state;
+        if ($state->getFinishEvent()->isHappened()) {
             $this->notices->addNotice(new FinishSkippedNotice());
             return true;
         }
@@ -146,7 +148,8 @@ final class Stopwatch implements StopwatchInterface
      */
     private function correctStartTimestampIfNecessary()
     {
-        if (!$this->state->isStartTimestampSet()) {
+        $state = $this->state;
+        if (!$state->getStartEvent()->isHappened()) {
             $this->state->setStartTimestamp($this->createTimestamp);
         }
     }
@@ -156,7 +159,8 @@ final class Stopwatch implements StopwatchInterface
      */
     private function correctFinishTimestampIfNecessary()
     {
-        if (!$this->state->isFinishTimestampSet()) {
+        $state = $this->state;
+        if (!$state->getFinishEvent()->isHappened()) {
             $this->state->setFinishTimestamp($this->reportTimestamp);
         }
     }

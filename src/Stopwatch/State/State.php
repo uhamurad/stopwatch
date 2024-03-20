@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\State;
 
+use Almasmurad\Stopwatch\Stopwatch\Event\Event;
+use Almasmurad\Stopwatch\Stopwatch\Event\EventInterface;
 use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
 
 /**
@@ -13,26 +15,20 @@ use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
  */
 final class State implements StateInterface
 {
-    const NULL_TIMESTAMP = -1.0;
-
     /**
-     * @var float
+     * @var Event
      */
-    private $startTimestamp = self::NULL_TIMESTAMP;
-
+    private $startEvent;
     /**
-     * @var float
+     * @var Event
      */
-    private $finishTimestamp = self::NULL_TIMESTAMP;
+    private $finishEvent;
 
-    public function getStartTimestamp(): float
-    {
-        return $this->startTimestamp;
-    }
 
-    public function getFinishTimestamp(): float
+    public function __construct()
     {
-        return $this->finishTimestamp;
+        $this->startEvent = Event::createNonHappened();
+        $this->finishEvent = Event::createNonHappened();
     }
 
     /**
@@ -40,7 +36,7 @@ final class State implements StateInterface
      */
     public function setStartTimestamp(float $timestamp)
     {
-        $this->startTimestamp = $timestamp;
+        $this->startEvent = Event::createHappened($timestamp);
     }
 
     /**
@@ -48,21 +44,21 @@ final class State implements StateInterface
      */
     public function setFinishTimestamp(float $timestamp)
     {
-        $this->finishTimestamp = $timestamp;
-    }
-
-    public function isStartTimestampSet(): bool
-    {
-        return $this->startTimestamp !== self::NULL_TIMESTAMP;
-    }
-
-    public function isFinishTimestampSet(): bool
-    {
-        return $this->finishTimestamp !== self::NULL_TIMESTAMP;
+        $this->finishEvent = Event::createHappened($timestamp);
     }
 
     public function isComplete(): bool
     {
-        return $this->isStartTimestampSet() && $this->isFinishTimestampSet();
+        return $this->startEvent->isHappened() && $this->finishEvent->isHappened();
+    }
+
+    public function getStartEvent(): EventInterface
+    {
+        return $this->startEvent;
+    }
+
+    public function getFinishEvent(): EventInterface
+    {
+        return $this->finishEvent;
     }
 }

@@ -12,82 +12,41 @@ final class StateTest extends TestCase
     /**
      * @return void
      */
-    public function testGetStartTimestampWhenStateJustCreated()
+    public function testGetStartEventWhenStateJustCreated()
     {
         $state = new State();
-        $this->assertEquals(State::NULL_TIMESTAMP, $state->getStartTimestamp());
+        $this->assertFalse($state->getStartEvent()->isHappened());
     }
 
     /**
      * @return void
      * @dataProvider provideTimestamp
      */
-    public function testGetStartTimestampAfterSetStartTimestamp(float $timestamp)
+    public function testGetStartEventAfterSetStartTimestamp(float $timestamp)
     {
         $state = new State();
         $state->setStartTimestamp($timestamp);
-        $this->assertEquals($timestamp, $state->getStartTimestamp());
+        $this->assertEquals($timestamp, $state->getStartEvent()->getTimestamp());
     }
 
     /**
      * @return void
      */
-    public function testGetFinishTimestampWhenStateJustCreated()
+    public function testGetFinishEventWhenStateJustCreated()
     {
         $state = new State();
-        $this->assertEquals(State::NULL_TIMESTAMP, $state->getFinishTimestamp());
+        $this->assertFalse($state->getFinishEvent()->isHappened());
     }
 
     /**
      * @return void
      * @dataProvider provideTimestamp
      */
-    public function testGetFinishTimestampAfterSetFinishTimestamp(float $timestamp)
+    public function testGetFinishEventAfterSetFinishTimestamp(float $timestamp)
     {
         $state = new State();
         $state->setFinishTimestamp($timestamp);
-        $this->assertEquals($timestamp, $state->getFinishTimestamp());
-    }
-
-
-    /**
-     * @return void
-     */
-    public function testIsStartTimestampSetWhenStateJustCreated()
-    {
-        $state = new State();
-        $this->assertFalse($state->isStartTimestampSet());
-    }
-
-    /**
-     * @return void
-     * @dataProvider provideTimestamp
-     */
-    public function testIsStartTimestampSetAfterSetStartTimestamp(float $timestamp)
-    {
-        $state = new State();
-        $state->setStartTimestamp($timestamp);
-        $this->assertEquals($timestamp !== State::NULL_TIMESTAMP, $state->isStartTimestampSet());
-    }
-
-    /**
-     * @return void
-     */
-    public function testIsFinishTimestampSetWhenStateJustCreated()
-    {
-        $state = new State();
-        $this->assertFalse($state->isFinishTimestampSet());
-    }
-
-    /**
-     * @return void
-     * @dataProvider provideTimestamp
-     */
-    public function testIsFinishTimestampSetAfterSetFinishTimestamp(float $timestamp)
-    {
-        $state = new State();
-        $state->setFinishTimestamp($timestamp);
-        $this->assertEquals($timestamp !== State::NULL_TIMESTAMP, $state->isFinishTimestampSet());
+        $this->assertEquals($timestamp, $state->getFinishEvent()->getTimestamp());
     }
 
     /**

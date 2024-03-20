@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\State\Common;
 
+use Almasmurad\Stopwatch\Stopwatch\Event\EventInterface;
+
 /**
  * Interface StateInterface defines methods for retrieving various timestamps of a state.
  */
 interface StateInterface
 {
-    public function getStartTimestamp(): float;
+    public function getStartEvent(): EventInterface;
 
-    public function isStartTimestampSet(): bool;
-
-    public function getFinishTimestamp(): float;
-
-    public function isFinishTimestampSet(): bool;
+    public function getFinishEvent(): EventInterface;
 
     public function isComplete(): bool;
 }
