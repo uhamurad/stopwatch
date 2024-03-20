@@ -13,7 +13,6 @@ use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 interface ReportRendererInterface
 {
     /**
-     * @param ReportInterface $report
      * @throws UnableToRenderReportException
      */
     public function render(ReportInterface $report): string;

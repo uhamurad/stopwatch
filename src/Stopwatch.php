@@ -172,7 +172,6 @@ final class Stopwatch implements StopwatchInterface
     }
 
     /**
-     * @param string $renderedReport
      * @return void
      */
     private function routeRenderedReport(string $renderedReport)

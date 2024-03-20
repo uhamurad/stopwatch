@@ -28,8 +28,6 @@ final class ReportFactory
     }
 
     /**
-     * @param Report $report
-     * @param NoticesCollection $notices
      * @return void
      */
     private function fillFromNotices(Report $report, NoticesCollection $notices)
@@ -40,8 +38,6 @@ final class ReportFactory
     }
 
     /**
-     * @param Report $report
-     * @param StateInterface $state
      * @return void
      */
     private function fillFromState(Report $report, StateInterface $state)
@@ -52,7 +48,6 @@ final class ReportFactory
     }
 
     /**
-     * @param StateInterface $state
      * @return void
      */
     private function validateState(StateInterface $state)

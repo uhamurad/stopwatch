@@ -19,7 +19,7 @@ final class TimeTest extends TestCase
     public function testCreateMeasuredWithWrongSeconds(float $seconds)
     {
         $this->expectException(\InvalidArgumentException::class);
-        $time = Time::createMeasured($seconds);
+        Time::createMeasured($seconds);
     }
 
     /**

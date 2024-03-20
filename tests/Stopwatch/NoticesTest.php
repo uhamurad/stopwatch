@@ -128,9 +128,7 @@ final class NoticesTest extends TestCase
         ];
     }
     /**
-     * @param Stopwatch $stopwatch
      * @param string[] $methods
-     * @return string
      */
     private function act(Stopwatch $stopwatch, array $methods): string
     {
@@ -156,12 +154,11 @@ final class NoticesTest extends TestCase
 
     /**
      * @param string[] $expectedNoticesMessages
-     * @param string $output
      * @return void
      */
     private function assert(array $expectedNoticesMessages, string $output)
     {
-        if (count($expectedNoticesMessages)) {
+        if ($expectedNoticesMessages !== []) {
             $this->assertContains(self::NOTICES_LABEL, $output);
             foreach ($expectedNoticesMessages as $message) {
                 $this->assertContains($message, $output);

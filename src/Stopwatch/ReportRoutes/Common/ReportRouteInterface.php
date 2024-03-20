@@ -7,7 +7,6 @@ namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common;
 interface ReportRouteInterface
 {
     /**
-     * @param string $report
      * @return void
      */
     public function process(string $report);

@@ -32,7 +32,6 @@ final class FileReportRouteTest extends AbstractReportRouteTest
     }
 
     /**
-     * @param string $report
      * @return void
      * @dataProvider provideReport
      */
@@ -52,7 +51,6 @@ final class FileReportRouteTest extends AbstractReportRouteTest
     }
 
     /**
-     * @param string $report
      * @return void
      * @dataProvider provideReport
      */
@@ -72,7 +70,6 @@ final class FileReportRouteTest extends AbstractReportRouteTest
     }
 
     /**
-     * @param string $report
      * @return void
      * @dataProvider provideReport
      */
@@ -93,7 +90,6 @@ final class FileReportRouteTest extends AbstractReportRouteTest
     }
 
     /**
-     * @param string $report
      * @return void
      * @dataProvider provideReport
      */
@@ -110,36 +106,26 @@ final class FileReportRouteTest extends AbstractReportRouteTest
         $route->process($report);
     }
 
-    /**
-     * @return string
-     */
     private function getFilepathUrl(): string
     {
         return $this->vfsStreamDirectory->url() . '/' . self::REPORT_FILEPATH;
     }
 
-    /**
-     * @return string
-     */
     private function getReportFileContent(): string
     {
         $child = $this->vfsStreamDirectory->getChild(self::REPORT_FILEPATH);
         if (!($child instanceof vfsStreamFile)) {
             throw new \LogicException('It is necessary to check if the file exists');
-            }
-            return $child->getContent();
-            }
+        }
+        return $child->getContent();
+    }
 
-            /**
-             * @return bool
-             */
-            private function hasReportFile(): bool
-            {
-                return $this->vfsStreamDirectory->hasChild(self::REPORT_FILEPATH);
-            }
+    private function hasReportFile(): bool
+    {
+        return $this->vfsStreamDirectory->hasChild(self::REPORT_FILEPATH);
+    }
 
     /**
-     * @param string $content
      * @return void
      */
     private function makeReportFile(string $content = '')

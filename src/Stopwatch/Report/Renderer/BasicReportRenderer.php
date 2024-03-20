@@ -19,17 +19,9 @@ final class BasicReportRenderer implements ReportRendererInterface
         $allSeconds = $report->getAllTime()->getSeconds();
         $allSecondsMeasured = $report->getAllTime()->isMeasured();
 
-        if ($allSecondsMeasured) {
-            $elapsedStr = number_format($allSeconds, 3, '.', ' ') . 's';
-        } else {
-            $elapsedStr = '[unknown]';
-        }
+        $elapsedStr = $allSecondsMeasured ? number_format($allSeconds, 3, '.', ' ') . 's' : '[unknown]';
 
-        if ($startHappened) {
-            $startedStr = date('r', (int)$startTime);
-        } else {
-            $startedStr = '[unknown]';
-        }
+        $startedStr = $startHappened ? date('r', (int)$startTime) : '[unknown]';
 
         $message = "Started at {$startedStr}";
         $breakLineLength = 42;
@@ -38,7 +30,7 @@ final class BasicReportRenderer implements ReportRendererInterface
         $message .= "\n" . $breakLine;
         $message .= "\nAll time | {$elapsedStr}";
 
-        if (count($notices = $report->getNotices()) > 0) {
+        if (($notices = $report->getNotices()) !== []) {
             $message .= "\n" . $breakLine;
             $message .= "\nNotices:";
             foreach ($notices as $notice) {

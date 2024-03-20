@@ -20,7 +20,7 @@ final class EventTest extends TestCase
     public function testCreateHappenedWithWrongTime(float $timestamp)
     {
         $this->expectException(\InvalidArgumentException::class);
-        $event = Event::createHappened($timestamp);
+        Event::createHappened($timestamp);
     }
 
     /**

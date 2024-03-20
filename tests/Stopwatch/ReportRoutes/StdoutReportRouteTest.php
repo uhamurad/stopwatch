@@ -10,7 +10,6 @@ use Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes\Common\AbstractReportRoute
 final class StdoutReportRouteTest extends AbstractReportRouteTest
 {
     /**
-     * @param string $report
      * @return void
      * @dataProvider provideReport
      */

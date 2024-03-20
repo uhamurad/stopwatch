@@ -106,19 +106,11 @@ final class Report implements ReportInterface
         return isset($this->notices[0]);
     }
 
-    /**
-     * @param float $time
-     * @return Event
-     */
     private function makeEvent(float $time): Event
     {
         return $time == self::NON_VALUE ? Event::createNonHappened() : Event::createHappened($time);
     }
 
-    /**
-     * @param float $seconds
-     * @return Time
-     */
     private function makeTime(float $seconds): Time
     {
         return $seconds == self::NON_VALUE ? Time::createNonMeasured() : Time::createMeasured($seconds);

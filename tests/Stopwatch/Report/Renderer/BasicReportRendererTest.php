@@ -112,7 +112,6 @@ final class BasicReportRendererTest extends TestCase
     }
 
     /**
-     * @param string $text
      * @return array{string, string, string[]}
      */
     private function assertAndParseStructureOfReportText(string $text): array
@@ -155,7 +154,6 @@ final class BasicReportRendererTest extends TestCase
     }
 
     /**
-     * @param string $noticesPart
      * @return string[]
      */
     private function assertAndParseNoticesPart(string $noticesPart): array

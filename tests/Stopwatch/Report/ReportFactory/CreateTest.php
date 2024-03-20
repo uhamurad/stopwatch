@@ -25,7 +25,7 @@ final class CreateTest extends TestCase
         $notices = new NoticesCollection();
 
         $this->expectException(\DomainException::class);
-        $report = $factory->create($state, $notices);
+        $factory->create($state, $notices);
     }
 
     /**
@@ -40,7 +40,7 @@ final class CreateTest extends TestCase
         $state->setStartTimestamp($time);
 
         $this->expectException(\DomainException::class);
-        $report = $factory->create($state, $notices);
+        $factory->create($state, $notices);
     }
 
     /**
