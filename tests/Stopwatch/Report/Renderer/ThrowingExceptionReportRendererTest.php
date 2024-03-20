@@ -9,7 +9,7 @@ use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\ThrowingExceptionReportRender
 use Almasmurad\Stopwatch\Stopwatch\Report\Report;
 use PHPUnit\Framework\TestCase;
 
-class ThrowingExceptionReportRendererTest extends TestCase
+final class ThrowingExceptionReportRendererTest extends TestCase
 {
     /**
      * @return void

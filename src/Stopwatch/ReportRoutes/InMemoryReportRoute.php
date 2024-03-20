@@ -6,7 +6,7 @@ namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes;
 
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
 
-class InMemoryReportRoute implements ReportRouteInterface
+final class InMemoryReportRoute implements ReportRouteInterface
 {
     /**
      * @var string

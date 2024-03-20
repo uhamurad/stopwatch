@@ -7,7 +7,7 @@ namespace Almasmurad\Stopwatch\Tests\Stopwatch\State;
 use Almasmurad\Stopwatch\Stopwatch\State\State;
 use PHPUnit\Framework\TestCase;
 
-class StateTest extends TestCase
+final class StateTest extends TestCase
 {
     /**
      * @return void

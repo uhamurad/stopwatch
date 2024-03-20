@@ -6,7 +6,7 @@ namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes;
 
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
 
-class StdoutReportRoute implements ReportRouteInterface
+final class StdoutReportRoute implements ReportRouteInterface
 {
     /**
      * @inheritDoc

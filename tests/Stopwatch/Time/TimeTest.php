@@ -8,7 +8,7 @@ use Almasmurad\Stopwatch\Stopwatch\Time\Time;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\SecondsProvidersTrait;
 use PHPUnit\Framework\TestCase;
 
-class TimeTest extends TestCase
+final class TimeTest extends TestCase
 {
     use SecondsProvidersTrait;
 

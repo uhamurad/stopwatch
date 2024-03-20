@@ -11,7 +11,7 @@ use Almasmurad\Stopwatch\Stopwatch\State\State;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\TimestampsProvidersTrait;
 use PHPUnit\Framework\TestCase;
 
-class CreateTest extends TestCase
+final class CreateTest extends TestCase
 {
     use TimestampsProvidersTrait;
 

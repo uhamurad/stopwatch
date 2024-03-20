@@ -10,7 +10,7 @@ use Almasmurad\Stopwatch\Tests\Stopwatch\Common\SecondsProvidersTrait;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\TimestampsProvidersTrait;
 use PHPUnit\Framework\TestCase;
 
-class BasicReportRendererTest extends TestCase
+final class BasicReportRendererTest extends TestCase
 {
     use SecondsProvidersTrait;
     use TimestampsProvidersTrait;

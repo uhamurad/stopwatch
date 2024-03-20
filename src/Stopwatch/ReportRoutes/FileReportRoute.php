@@ -7,7 +7,7 @@ namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\Exceptions\UnableToProcessReportException;
 
-class FileReportRoute implements ReportRouteInterface
+final class FileReportRoute implements ReportRouteInterface
 {
     /**
      * @var string

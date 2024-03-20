@@ -7,7 +7,7 @@ namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\Exceptions;
 use Almasmurad\Stopwatch\Stopwatch\Exceptions\StopwatchException;
 use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
 
-class UnableToProcessReportException extends StopwatchException
+final class UnableToProcessReportException extends StopwatchException
 {
     public function __construct(ReportRouteInterface $route, string $report, string $message = "", int $code = 0, \Throwable $previous = null)
     {

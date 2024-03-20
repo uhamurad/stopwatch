@@ -6,7 +6,7 @@ namespace Almasmurad\Stopwatch\Stopwatch\Notices;
 
 use Almasmurad\Stopwatch\Stopwatch\Notices\Common\NoticeInterface;
 
-class FinishSkippedNotice implements NoticeInterface
+final class FinishSkippedNotice implements NoticeInterface
 {
     public function getText(): string
     {

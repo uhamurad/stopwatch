@@ -11,7 +11,7 @@ use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\InMemoryReportRoute;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
 use org\bovigo\vfs\vfsStream;
 
-class StopwatchTest extends AbstractTest
+final class StopwatchTest extends AbstractTest
 {
     /**
      * @return void

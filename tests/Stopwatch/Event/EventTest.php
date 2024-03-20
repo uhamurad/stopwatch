@@ -9,7 +9,7 @@ use Almasmurad\Stopwatch\Tests\Stopwatch\Common\TimestampsProvidersTrait;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
-class EventTest extends TestCase
+final class EventTest extends TestCase
 {
     use TimestampsProvidersTrait;
 

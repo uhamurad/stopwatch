@@ -6,7 +6,7 @@ namespace Almasmurad\Stopwatch\Stopwatch\Notices;
 
 use Almasmurad\Stopwatch\Stopwatch\Notices\Common\NoticeInterface;
 
-class NoticesCollection
+final class NoticesCollection
 {
     /**
      * @var NoticeInterface[]

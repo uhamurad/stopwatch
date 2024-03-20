@@ -7,7 +7,7 @@ namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 use Almasmurad\Stopwatch\Stopwatch;
 use PHPUnit\Framework\TestCase;
 
-class NoticesTest extends TestCase
+final class NoticesTest extends TestCase
 {
     const ERRORS_LABEL = 'Errors';
     const NOTICES_LABEL = 'Notices';
