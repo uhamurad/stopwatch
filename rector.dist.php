@@ -65,5 +65,10 @@ return RectorConfig::configure()
         PrivatizeFinalClassPropertyRector::class,
         ArgumentRemoverRector::class
     ])
-    ->withPreparedSets(deadCode: true, typeDeclarations: true, instanceOf: true, earlyReturn: true,
-        strictBooleans: true);
+    ->withPreparedSets(
+        deadCode: true,
+        typeDeclarations: true,
+        instanceOf: true,
+        earlyReturn: true,
+        strictBooleans: true
+    );
