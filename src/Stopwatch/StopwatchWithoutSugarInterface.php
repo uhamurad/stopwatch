@@ -8,11 +8,20 @@ use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 
 interface StopwatchWithoutSugarInterface
 {
-    public function start(): StopwatchInterface;
+    /**
+     * @return void
+     */
+    public function start();
 
-    public function finish(): StopwatchInterface;
+    /**
+     * @return void
+     */
+    public function finish();
 
-    public function report(): StopwatchInterface;
+    /**
+     * @return void
+     */
+    public function report();
 
     public function getReport(): ReportInterface;
 }

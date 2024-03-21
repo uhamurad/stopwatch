@@ -65,30 +65,31 @@ final class Stopwatch implements StopwatchInterface
         $this->state = new State();
     }
 
-    public function start(): StopwatchInterface
+    public function start()
     {
         if (!$this->skipStartIfNecessary()) {
             $this->state->setStartTimestamp($this->getCurrentTimestamp());
-        };
-        return $this;
+        }
     }
 
-    public function finish(): StopwatchInterface
+    public function finish()
     {
         if (!$this->skipFinishIfNecessary()) {
             $this->state->setFinishTimestamp($this->getCurrentTimestamp());
             $this->correctStartTimestampIfNecessary();
         }
-        return $this;
     }
 
-    public function report(): StopwatchInterface
+    public function report()
     {
         $report = $this->getReport();
         $reportText = $this->renderReport($report);
         $this->routeRenderedReport($reportText);
+    }
 
-        return $this;
+    public function reportToFile(string $filepath)
+    {
+        $this->setReportRoute(new FileReportRoute($filepath))->report();
     }
 
     public function getReport(): ReportInterface
@@ -97,11 +98,6 @@ final class Stopwatch implements StopwatchInterface
 
         $factory = new ReportFactory();
         return $factory->create($this->state, $this->notices);
-    }
-
-    public function reportToFile(string $filepath): StopwatchInterface
-    {
-        return $this->setReportRoute(new FileReportRoute($filepath))->report();
     }
 
     public function setReportRoute(ReportRouteInterface $reportRoute): StopwatchInterface
