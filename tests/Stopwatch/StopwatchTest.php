@@ -85,10 +85,10 @@ final class StopwatchTest extends AbstractTest
         // Given
         $route = new InMemoryReportRoute();
         $renderer = new ThrowingExceptionReportRenderer();
-        $stopwatch = (new Stopwatch())->withReportRoute($route);
+        $stopwatch = (new Stopwatch())->setReportRoute($route);
 
         // When
-        $stopwatch = $stopwatch->withReportRenderer($renderer);
+        $stopwatch = $stopwatch->setReportRenderer($renderer);
         list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
 
         // Then
@@ -138,14 +138,14 @@ final class StopwatchTest extends AbstractTest
     /**
      * @return void
      */
-    public function testWithReportRoute()
+    public function testSetReportRoute()
     {
         // Given
         $testReportRoute = new InMemoryReportRoute();
         $stopwatch = new Stopwatch();
 
         // When
-        $stopwatch = $stopwatch->withReportRoute($testReportRoute);
+        $stopwatch = $stopwatch->setReportRoute($testReportRoute);
         list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
         $stopwatch->report();
 
@@ -159,15 +159,15 @@ final class StopwatchTest extends AbstractTest
     /**
      * @return void
      */
-    public function testWithReportRenderer()
+    public function testSetReportRenderer()
     {
         // Given
         $route = new InMemoryReportRoute();
         $renderer = new BasicReportRenderer();
-        $stopwatch = (new Stopwatch())->withReportRoute($route);
+        $stopwatch = (new Stopwatch())->setReportRoute($route);
 
         // When
-        $stopwatch = $stopwatch->withReportRenderer($renderer);
+        $stopwatch = $stopwatch->setReportRenderer($renderer);
         list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
 
         // Then

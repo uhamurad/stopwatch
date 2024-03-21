@@ -101,21 +101,19 @@ final class Stopwatch implements StopwatchInterface
 
     public function reportToFile(string $filepath): StopwatchInterface
     {
-        return $this->withReportRoute(new FileReportRoute($filepath))->report();
+        return $this->setReportRoute(new FileReportRoute($filepath))->report();
     }
 
-    public function withReportRoute(ReportRouteInterface $reportRoute): StopwatchInterface
+    public function setReportRoute(ReportRouteInterface $reportRoute): StopwatchInterface
     {
-        $clone = clone $this;
-        $clone->reportRoute = $reportRoute;
-        return $clone;
+        $this->reportRoute = $reportRoute;
+        return $this;
     }
 
-    public function withReportRenderer(ReportRendererInterface $reportRenderer): StopwatchInterface
+    public function setReportRenderer(ReportRendererInterface $reportRenderer): StopwatchInterface
     {
-        $clone = clone $this;
-        $clone->reportRenderer = $reportRenderer;
-        return $clone;
+        $this->reportRenderer = $reportRenderer;
+        return $this;
     }
 
     private function getCurrentTimestamp(): float

@@ -11,7 +11,7 @@ interface StopwatchInterface extends StopwatchWithoutSugarInterface
 {
     public function reportToFile(string $filepath): self;
 
-    public function withReportRoute(ReportRouteInterface $reportRoute): self;
+    public function setReportRoute(ReportRouteInterface $reportRoute): self;
 
-    public function withReportRenderer(ReportRendererInterface $reportRenderer): self;
+    public function setReportRenderer(ReportRendererInterface $reportRenderer): self;
 }
