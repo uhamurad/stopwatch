@@ -18,11 +18,11 @@ final class Event implements EventInterface
     /**
      * @var float
      */
-    private $time;
+    private $timestamp;
 
-    private function __construct(float $time)
+    private function __construct(float $timestamp)
     {
-        $this->time = $time;
+        $this->timestamp = $timestamp;
     }
 
     public static function createNonHappened(): self
@@ -30,12 +30,12 @@ final class Event implements EventInterface
         return new self(self::NULL_TIMESTAMP);
     }
 
-    public static function createHappened(float $time): self
+    public static function createHappened(float $timestamp): self
     {
-        if ($time < 0.0) {
-            throw new \InvalidArgumentException(sprintf('time value must be positive, %f given', $time));
+        if ($timestamp < 0.0) {
+            throw new \InvalidArgumentException(sprintf('time value must be positive, %f given', $timestamp));
         }
-        return new self($time);
+        return new self($timestamp);
     }
 
     /**
@@ -51,11 +51,11 @@ final class Event implements EventInterface
 
     public function getTimestamp(): float
     {
-        return max($this->time, 0);
+        return max($this->timestamp, 0);
     }
 
     public function isHappened(): bool
     {
-        return self::NULL_TIMESTAMP != $this->time;
+        return self::NULL_TIMESTAMP != $this->timestamp;
     }
 }

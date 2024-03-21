@@ -17,7 +17,7 @@ final class EventTest extends TestCase
      * @return void
      * @dataProvider provideInvalidTimestamp
      */
-    public function testCreateHappenedWithWrongTime(float $timestamp)
+    public function testCreateHappenedWithWrongTimestamp(float $timestamp)
     {
         $this->expectException(\InvalidArgumentException::class);
         Event::createHappened($timestamp);
