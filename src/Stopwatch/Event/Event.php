@@ -20,6 +20,11 @@ final class Event implements EventInterface
      */
     private $timestamp;
 
+    /**
+     * @var self|null
+     */
+    private static $nonHappenedFlyweight;
+
     private function __construct(float $timestamp)
     {
         $this->timestamp = $timestamp;
@@ -27,7 +32,10 @@ final class Event implements EventInterface
 
     public static function createNonHappened(): self
     {
-        return new self(self::NULL_TIMESTAMP);
+        if (self::$nonHappenedFlyweight === null) {
+            self::$nonHappenedFlyweight = new self(self::NULL_TIMESTAMP);
+        }
+        return self::$nonHappenedFlyweight;
     }
 
     public static function createHappened(float $timestamp): self

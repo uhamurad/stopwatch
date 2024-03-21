@@ -61,4 +61,16 @@ final class TimeTest extends TestCase
         $this->assertEquals(0.0, $time->getSeconds());
     }
 
+
+    /**
+     * @return void
+     */
+    public function testCreateNonMeasuredReturnsFlyweight()
+    {
+        $time = Time::createNonMeasured();
+        $time2 = Time::createNonMeasured();
+        $this->assertSame($time, $time2);
+    }
+
+
 }

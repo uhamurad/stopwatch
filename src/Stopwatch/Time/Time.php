@@ -18,6 +18,11 @@ final class Time implements TimeInterface
      */
     private $seconds;
 
+    /**
+     * @var self|null
+     */
+    private static $nonMeasuredFlyweight;
+
     private function __construct(float $seconds)
     {
         $this->seconds = $seconds;
@@ -25,7 +30,10 @@ final class Time implements TimeInterface
 
     public static function createNonMeasured(): self
     {
-        return new self(self::NULL_SECONDS);
+        if (self::$nonMeasuredFlyweight === null) {
+            self::$nonMeasuredFlyweight = new self(self::NULL_SECONDS);
+        }
+        return self::$nonMeasuredFlyweight;
     }
 
     public static function createMeasured(float $seconds): self

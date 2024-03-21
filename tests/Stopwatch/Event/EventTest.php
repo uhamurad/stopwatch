@@ -85,4 +85,14 @@ final class EventTest extends TestCase
         $this->assertEquals(0, (float) $event->getDateTime()->format('U.u'));
     }
 
+    /**
+     * @return void
+     */
+    public function testCreateNonHappenedReturnsFlyweight()
+    {
+        $event = Event::createNonHappened();
+        $event2 = Event::createNonHappened();
+        $this->assertSame($event, $event2);
+    }
+
 }
