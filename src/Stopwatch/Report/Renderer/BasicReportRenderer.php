@@ -14,14 +14,14 @@ final class BasicReportRenderer implements ReportRendererInterface
 {
     public function render(ReportInterface $report): string
     {
-        $startTime = $report->getStartEvent()->getTimestamp();
+        $startTimestamp = $report->getStartEvent()->getTimestamp();
         $startHappened = $report->getStartEvent()->isHappened();
         $allSeconds = $report->getAllTime()->getSeconds();
         $allSecondsMeasured = $report->getAllTime()->isMeasured();
 
         $elapsedStr = $allSecondsMeasured ? number_format($allSeconds, 3, '.', ' ') . 's' : '[unknown]';
 
-        $startedStr = $startHappened ? date('r', (int) $startTime) : '[unknown]';
+        $startedStr = $startHappened ? date('r', (int) $startTimestamp) : '[unknown]';
 
         $message = "Started at {$startedStr}";
         $breakLineLength = 42;
