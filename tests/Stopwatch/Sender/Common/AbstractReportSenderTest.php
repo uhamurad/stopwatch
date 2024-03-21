@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes\Common;
+namespace Almasmurad\Stopwatch\Tests\Stopwatch\Sender\Common;
 
 use PHPUnit\Framework\TestCase;
 
-abstract class AbstractReportRouteTest extends TestCase
+abstract class AbstractReportSenderTest extends TestCase
 {
     /**
      * @return string[][]

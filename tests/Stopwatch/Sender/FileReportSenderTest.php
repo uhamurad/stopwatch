@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes;
+namespace Almasmurad\Stopwatch\Tests\Stopwatch\Sender;
 
-use Almasmurad\Stopwatch\Report\Route\Common\Exceptions\UnableToProcessReportException;
-use Almasmurad\Stopwatch\Report\Route\FileReportRoute;
-use Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes\Common\AbstractReportRouteTest;
+use Almasmurad\Stopwatch\Report\Sender\Common\Exceptions\UnableToSendReportException;
+use Almasmurad\Stopwatch\Report\Sender\FileReportSender;
+use Almasmurad\Stopwatch\Tests\Stopwatch\Sender\Common\AbstractReportSenderTest;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamFile;
 
-final class FileReportRouteTest extends AbstractReportRouteTest
+final class FileReportSenderTest extends AbstractReportSenderTest
 {
     const REPORT_DIR = 'reports';
     const REPORT_BASENAME = 'report.txt';
@@ -35,15 +35,15 @@ final class FileReportRouteTest extends AbstractReportRouteTest
      * @return void
      * @dataProvider provideReport
      */
-    public function testProcessWhenNoFile(string $report)
+    public function testSendWhenNoFile(string $report)
     {
         // Given
         $filepath = $this->getFilepathUrl();
-        $route = new FileReportRoute($filepath);
+        $sender = new FileReportSender($filepath);
 
         // When
         $this->makeReportDir();
-        $route->process($report);
+        $sender->send($report);
 
         // Then
         $output = $this->getReportFileContent();
@@ -54,14 +54,14 @@ final class FileReportRouteTest extends AbstractReportRouteTest
      * @return void
      * @dataProvider provideReport
      */
-    public function testProcessWhenNoDir(string $report)
+    public function testSendWhenNoDir(string $report)
     {
         // Given
         $filepath = $this->getFilepathUrl();
-        $route = new FileReportRoute($filepath);
+        $sender = new FileReportSender($filepath);
 
         // When
-        $route->process($report);
+        $sender->send($report);
 
         // Then
         $this->assertTrue($this->hasReportFile());
@@ -73,16 +73,16 @@ final class FileReportRouteTest extends AbstractReportRouteTest
      * @return void
      * @dataProvider provideReport
      */
-    public function testProcessWhenFileAlreadyHasData(string $report)
+    public function testSendWhenFileAlreadyHasData(string $report)
     {
         // Given
         $filepath = $this->getFilepathUrl();
-        $route = new FileReportRoute($filepath);
+        $sender = new FileReportSender($filepath);
 
         // When
         $this->makeReportDir();
         $this->makeReportFile("123\n456\n789");
-        $route->process($report);
+        $sender->send($report);
 
         // Then
         $output = $this->getReportFileContent();
@@ -93,17 +93,17 @@ final class FileReportRouteTest extends AbstractReportRouteTest
      * @return void
      * @dataProvider provideReport
      */
-    public function testProcessWhenThrownException(string $report)
+    public function testSendWhenThrownException(string $report)
     {
         // Given
         $wrongFilepath = $this->vfsStreamDirectory->url() . '/';
-        $route = new FileReportRoute($wrongFilepath);
+        $sender = new FileReportSender($wrongFilepath);
 
         // Then
-        $this->expectException(UnableToProcessReportException::class);
+        $this->expectException(UnableToSendReportException::class);
 
         // When
-        $route->process($report);
+        $sender->send($report);
     }
 
     private function getFilepathUrl(): string

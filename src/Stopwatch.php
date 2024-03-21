@@ -12,9 +12,9 @@ use Almasmurad\Stopwatch\Report\Common\ReportInterface;
 use Almasmurad\Stopwatch\Report\Factory\ReportFactory;
 use Almasmurad\Stopwatch\Report\Renderer\BasicReportRenderer;
 use Almasmurad\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
-use Almasmurad\Stopwatch\Report\Route\Common\ReportRouteInterface;
-use Almasmurad\Stopwatch\Report\Route\FileReportRoute;
-use Almasmurad\Stopwatch\Report\Route\StdoutReportRoute;
+use Almasmurad\Stopwatch\Report\Sender\Common\ReportSenderInterface;
+use Almasmurad\Stopwatch\Report\Sender\FileReportSender;
+use Almasmurad\Stopwatch\Report\Sender\StdoutReportSender;
 use Almasmurad\Stopwatch\State\State;
 
 /**
@@ -47,9 +47,9 @@ final class Stopwatch implements StopwatchInterface
     private $notices;
 
     /**
-     * @var ReportRouteInterface
+     * @var ReportSenderInterface
      */
-    private $reportRoute;
+    private $reportSender;
 
     /**
      * @var ReportRendererInterface
@@ -60,7 +60,7 @@ final class Stopwatch implements StopwatchInterface
     {
         $this->createTimestamp = $this->getCurrentTimestamp();
         $this->notices = new NoticesCollection();
-        $this->reportRoute = $this->getDefaultReportRoute();
+        $this->reportSender = $this->getDefaultReportSender();
         $this->reportRenderer = $this->getDefaultReportRenderer();
         $this->state = new State();
     }
@@ -84,12 +84,12 @@ final class Stopwatch implements StopwatchInterface
     {
         $report = $this->getReport();
         $reportText = $this->renderReport($report);
-        $this->routeRenderedReport($reportText);
+        $this->sendRenderedReport($reportText);
     }
 
     public function reportToFile(string $filepath)
     {
-        $this->setReportRoute(new FileReportRoute($filepath))->report();
+        $this->setReportSender(new FileReportSender($filepath))->report();
     }
 
     public function getReport(): ReportInterface
@@ -100,9 +100,9 @@ final class Stopwatch implements StopwatchInterface
         return $factory->create($this->state, $this->notices);
     }
 
-    public function setReportRoute(ReportRouteInterface $reportRoute): StopwatchInterface
+    public function setReportSender(ReportSenderInterface $reportSender): StopwatchInterface
     {
-        $this->reportRoute = $reportRoute;
+        $this->reportSender = $reportSender;
         return $this;
     }
 
@@ -159,9 +159,9 @@ final class Stopwatch implements StopwatchInterface
         }
     }
 
-    private function getDefaultReportRoute(): ReportRouteInterface
+    private function getDefaultReportSender(): ReportSenderInterface
     {
-        return new StdoutReportRoute();
+        return new StdoutReportSender();
     }
 
     private function getDefaultReportRenderer(): ReportRendererInterface
@@ -172,10 +172,10 @@ final class Stopwatch implements StopwatchInterface
     /**
      * @return void
      */
-    private function routeRenderedReport(string $renderedReport)
+    private function sendRenderedReport(string $renderedReport)
     {
         try {
-            $this->reportRoute->process($renderedReport);
+            $this->reportSender->send($renderedReport);
         } catch (\Throwable $exception) { // @codeCoverageIgnore
 
         }

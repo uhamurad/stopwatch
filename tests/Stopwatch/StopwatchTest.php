@@ -6,7 +6,7 @@ namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
 use Almasmurad\Stopwatch\Report\Renderer\BasicReportRenderer;
 use Almasmurad\Stopwatch\Report\Renderer\ThrowingExceptionReportRenderer;
-use Almasmurad\Stopwatch\Report\Route\InMemoryReportRoute;
+use Almasmurad\Stopwatch\Report\Sender\InMemoryReportSender;
 use Almasmurad\Stopwatch\Stopwatch;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
 use org\bovigo\vfs\vfsStream;
@@ -83,9 +83,9 @@ final class StopwatchTest extends AbstractTest
     public function testReportWhenReportRenderingErrorOccurred()
     {
         // Given
-        $route = new InMemoryReportRoute();
+        $sender = new InMemoryReportSender();
         $renderer = new ThrowingExceptionReportRenderer();
-        $stopwatch = (new Stopwatch())->setReportRoute($route);
+        $stopwatch = (new Stopwatch())->setReportSender($sender);
 
         // When
         $stopwatch = $stopwatch->setReportRenderer($renderer);
@@ -93,7 +93,7 @@ final class StopwatchTest extends AbstractTest
 
         // Then
         $stopwatch->report();
-        $renderedReport = $route->getRenderedReport();
+        $renderedReport = $sender->getRenderedReport();
         $this->assertContains('Error due report rendering', $renderedReport);
     }
 
@@ -121,7 +121,7 @@ final class StopwatchTest extends AbstractTest
      * @doesNotPerformAssertions
      * @return void
      */
-    public function testReportWhenRouteThrowsException()
+    public function testReportWhenSenderThrowsException()
     {
         // Given
         $vfsStreamDirectory = vfsStream::setup();
@@ -138,19 +138,19 @@ final class StopwatchTest extends AbstractTest
     /**
      * @return void
      */
-    public function testSetReportRoute()
+    public function testSetReportSender()
     {
         // Given
-        $testReportRoute = new InMemoryReportRoute();
+        $testReportSender = new InMemoryReportSender();
         $stopwatch = new Stopwatch();
 
         // When
-        $stopwatch = $stopwatch->setReportRoute($testReportRoute);
+        $stopwatch = $stopwatch->setReportSender($testReportSender);
         list($beforeStartTimestamp, $afterStartTimestamp) = $this->simpleAct($stopwatch);
         $stopwatch->report();
 
         // Then
-        $output = $testReportRoute->getRenderedReport();
+        $output = $testReportSender->getRenderedReport();
         $this->assertStartedAtLabel($output);
         $this->assertStartedAtValue($output, $beforeStartTimestamp, $afterStartTimestamp);
     }
@@ -162,9 +162,9 @@ final class StopwatchTest extends AbstractTest
     public function testSetReportRenderer()
     {
         // Given
-        $route = new InMemoryReportRoute();
+        $reportSender = new InMemoryReportSender();
         $renderer = new BasicReportRenderer();
-        $stopwatch = (new Stopwatch())->setReportRoute($route);
+        $stopwatch = (new Stopwatch())->setReportSender($reportSender);
 
         // When
         $stopwatch = $stopwatch->setReportRenderer($renderer);
@@ -172,7 +172,7 @@ final class StopwatchTest extends AbstractTest
 
         // Then
         $stopwatch->report();
-        $output = $route->getRenderedReport();
+        $output = $reportSender->getRenderedReport();
         $this->assertStartedAtLabel($output);
         $this->assertStartedAtValue($output, $beforeStartTimestamp, $afterStartTimestamp);
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Report\Route;
+namespace Almasmurad\Stopwatch\Report\Sender;
 
-use Almasmurad\Stopwatch\Report\Route\Common\ReportRouteInterface;
+use Almasmurad\Stopwatch\Report\Sender\Common\ReportSenderInterface;
 
-final class InMemoryReportRoute implements ReportRouteInterface
+final class InMemoryReportSender implements ReportSenderInterface
 {
     /**
      * @var string
@@ -16,7 +16,7 @@ final class InMemoryReportRoute implements ReportRouteInterface
     /**
      * @inheritDoc
      */
-    public function process(string $report)
+    public function send(string $report)
     {
         $this->report = $report;
     }

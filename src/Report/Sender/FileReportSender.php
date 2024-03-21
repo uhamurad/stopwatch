@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Report\Route;
+namespace Almasmurad\Stopwatch\Report\Sender;
 
-use Almasmurad\Stopwatch\Report\Route\Common\Exceptions\UnableToProcessReportException;
-use Almasmurad\Stopwatch\Report\Route\Common\ReportRouteInterface;
+use Almasmurad\Stopwatch\Report\Sender\Common\Exceptions\UnableToSendReportException;
+use Almasmurad\Stopwatch\Report\Sender\Common\ReportSenderInterface;
 
-final class FileReportRoute implements ReportRouteInterface
+final class FileReportSender implements ReportSenderInterface
 {
     /**
      * @var string
@@ -22,7 +22,7 @@ final class FileReportRoute implements ReportRouteInterface
     /**
      * @inheritDoc
      */
-    public function process(string $report)
+    public function send(string $report)
     {
         $this->filePutContents($this->filepath, $report);
     }
@@ -42,7 +42,7 @@ final class FileReportRoute implements ReportRouteInterface
         $result = @file_put_contents($fullPath, $contents);
         if ($result === false) {
             $error = error_get_last();
-            throw new UnableToProcessReportException($this, $contents, sprintf(
+            throw new UnableToSendReportException($this, $contents, sprintf(
                 "Error due calling file_put_contents() for writing a report: %s",
                 $error['message'] ?? 'undefined error'
             ));

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch\Common;
 
 use Almasmurad\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
-use Almasmurad\Stopwatch\Report\Route\Common\ReportRouteInterface;
+use Almasmurad\Stopwatch\Report\Sender\Common\ReportSenderInterface;
 
 interface StopwatchInterface extends StopwatchWithoutSugarInterface
 {
@@ -14,7 +14,7 @@ interface StopwatchInterface extends StopwatchWithoutSugarInterface
      */
     public function reportToFile(string $filepath);
 
-    public function setReportRoute(ReportRouteInterface $reportRoute): self;
+    public function setReportSender(ReportSenderInterface $reportSender): self;
 
     public function setReportRenderer(ReportRendererInterface $reportRenderer): self;
 }
