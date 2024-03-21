@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes;
 
-use Almasmurad\Stopwatch\Stopwatch\Report\Route\Common\Exceptions\UnableToProcessReportException;
-use Almasmurad\Stopwatch\Stopwatch\Report\Route\FileReportRoute;
+use Almasmurad\Stopwatch\Report\Route\Common\Exceptions\UnableToProcessReportException;
+use Almasmurad\Stopwatch\Report\Route\FileReportRoute;
 use Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes\Common\AbstractReportRouteTest;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;

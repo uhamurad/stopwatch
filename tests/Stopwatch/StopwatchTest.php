@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
-use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\BasicReportRenderer;
-use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\ThrowingExceptionReportRenderer;
-use Almasmurad\Stopwatch\Stopwatch\Report\Route\InMemoryReportRoute;
-use Almasmurad\Stopwatch\Stopwatch\Stopwatch;
+use Almasmurad\Stopwatch\Report\Renderer\BasicReportRenderer;
+use Almasmurad\Stopwatch\Report\Renderer\ThrowingExceptionReportRenderer;
+use Almasmurad\Stopwatch\Report\Route\InMemoryReportRoute;
+use Almasmurad\Stopwatch\Stopwatch;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
 use org\bovigo\vfs\vfsStream;
 

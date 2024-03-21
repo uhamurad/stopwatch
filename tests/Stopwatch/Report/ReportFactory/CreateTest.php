@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Report\ReportFactory;
 
-use Almasmurad\Stopwatch\Stopwatch\Notices\Collection\NoticesCollection;
-use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
-use Almasmurad\Stopwatch\Stopwatch\Report\Factory\ReportFactory;
-use Almasmurad\Stopwatch\Stopwatch\State\State;
+use Almasmurad\Stopwatch\Notices\Collection\NoticesCollection;
+use Almasmurad\Stopwatch\Notices\StartSkippedNotice;
+use Almasmurad\Stopwatch\Report\Factory\ReportFactory;
+use Almasmurad\Stopwatch\State\State;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\TimestampsProvidersTrait;
 use PHPUnit\Framework\TestCase;
 

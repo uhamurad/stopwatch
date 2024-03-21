@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Common;
 
-use Almasmurad\Stopwatch\Stopwatch\Common\StopwatchInterface;
+use Almasmurad\Stopwatch\Common\StopwatchInterface;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractTest extends TestCase

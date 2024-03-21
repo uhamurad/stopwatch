@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
-use Almasmurad\Stopwatch\Stopwatch\Stopwatch;
+use Almasmurad\Stopwatch\Stopwatch;
 use PHPUnit\Framework\TestCase;
 
 final class NoticesTest extends TestCase

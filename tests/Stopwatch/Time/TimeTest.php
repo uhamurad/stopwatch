@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Time;
 
-use Almasmurad\Stopwatch\Stopwatch\Time\Time;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\SecondsProvidersTrait;
+use Almasmurad\Stopwatch\Time\Time;
 use PHPUnit\Framework\TestCase;
 
 final class TimeTest extends TestCase

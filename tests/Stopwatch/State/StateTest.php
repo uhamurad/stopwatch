@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\State;
 
-use Almasmurad\Stopwatch\Stopwatch\State\State;
+use Almasmurad\Stopwatch\State\State;
 use PHPUnit\Framework\TestCase;
 
 final class StateTest extends TestCase

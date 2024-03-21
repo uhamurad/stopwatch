@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Report;
 
-use Almasmurad\Stopwatch\Stopwatch\Report\Report;
+use Almasmurad\Stopwatch\Report\Report;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\SecondsProvidersTrait;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\TimestampsProvidersTrait;
 use PHPUnit\Framework\TestCase;

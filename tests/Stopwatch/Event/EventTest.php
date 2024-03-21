@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Event;
 
-use Almasmurad\Stopwatch\Stopwatch\Event\Event;
+use Almasmurad\Stopwatch\Event\Event;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\TimestampsProvidersTrait;
 use Exception;
 use PHPUnit\Framework\TestCase;

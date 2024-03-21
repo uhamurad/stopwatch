@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes;
 
-use Almasmurad\Stopwatch\Stopwatch\Report\Route\StdoutReportRoute;
+use Almasmurad\Stopwatch\Report\Route\StdoutReportRoute;
 use Almasmurad\Stopwatch\Tests\Stopwatch\ReportRoutes\Common\AbstractReportRouteTest;
 
 final class StdoutReportRouteTest extends AbstractReportRouteTest
