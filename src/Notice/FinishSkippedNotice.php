@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Notices;
+namespace Almasmurad\Stopwatch\Notice;
 
-use Almasmurad\Stopwatch\Notices\Common\NoticeInterface;
+use Almasmurad\Stopwatch\Notice\Common\NoticeInterface;
 
 final class FinishSkippedNotice implements NoticeInterface
 {

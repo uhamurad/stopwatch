@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Notices\Collection;
+namespace Almasmurad\Stopwatch\Notice\Collection;
 
-use Almasmurad\Stopwatch\Notices\Common\NoticeInterface;
+use Almasmurad\Stopwatch\Notice\Common\NoticeInterface;
 
 final class NoticesCollection
 {

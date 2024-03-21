@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch;
 
 use Almasmurad\Stopwatch\Common\StopwatchInterface;
-use Almasmurad\Stopwatch\Notices\Collection\NoticesCollection;
-use Almasmurad\Stopwatch\Notices\FinishSkippedNotice;
-use Almasmurad\Stopwatch\Notices\StartSkippedNotice;
+use Almasmurad\Stopwatch\Notice\Collection\NoticesCollection;
+use Almasmurad\Stopwatch\Notice\FinishSkippedNotice;
+use Almasmurad\Stopwatch\Notice\StartSkippedNotice;
 use Almasmurad\Stopwatch\Report\Common\ReportInterface;
 use Almasmurad\Stopwatch\Report\Factory\ReportFactory;
 use Almasmurad\Stopwatch\Report\Renderer\BasicReportRenderer;

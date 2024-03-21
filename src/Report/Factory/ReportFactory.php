@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Report\Factory;
 
-use Almasmurad\Stopwatch\Notices\Collection\NoticesCollection;
+use Almasmurad\Stopwatch\Notice\Collection\NoticesCollection;
 use Almasmurad\Stopwatch\Report\Common\ReportInterface;
 use Almasmurad\Stopwatch\Report\Report;
 use Almasmurad\Stopwatch\State\Common\StateInterface;
