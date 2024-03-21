@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Tests\Stopwatch\Sender;
+namespace Almasmurad\Stopwatch\Tests\Stopwatch\Report\Sender;
 
 use Almasmurad\Stopwatch\Report\Sender\Common\Exceptions\UnableToSendReportException;
 use Almasmurad\Stopwatch\Report\Sender\FileReportSender;
-use Almasmurad\Stopwatch\Tests\Stopwatch\Sender\Common\AbstractReportSenderTest;
+use Almasmurad\Stopwatch\Tests\Stopwatch\Report\Sender\Common\AbstractReportSenderTest;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamFile;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Tests\Stopwatch\Report\ReportFactory;
+namespace Almasmurad\Stopwatch\Tests\Stopwatch\Report\Factory;
 
 use Almasmurad\Stopwatch\Notice\Collection\NoticesCollection;
 use Almasmurad\Stopwatch\Notice\StartSkippedNotice;

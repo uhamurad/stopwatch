@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Tests\Stopwatch\Sender\Common;
+namespace Almasmurad\Stopwatch\Tests\Stopwatch\Report\Sender\Common;
 
 use PHPUnit\Framework\TestCase;
 
