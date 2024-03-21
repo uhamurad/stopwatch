@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch;
+namespace Almasmurad\Stopwatch\Stopwatch;
 
-use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
-use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
+use Almasmurad\Stopwatch\Stopwatch\Common\StopwatchInterface;
+use Almasmurad\Stopwatch\Stopwatch\Notices\Collection\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Notices\FinishSkippedNotice;
+use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
+use Almasmurad\Stopwatch\Stopwatch\Report\Common\ReportInterface;
 use Almasmurad\Stopwatch\Stopwatch\Report\Factory\ReportFactory;
 use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\BasicReportRenderer;
 use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
-use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
-use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
-use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\FileReportRoute;
-use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\StdoutReportRoute;
+use Almasmurad\Stopwatch\Stopwatch\Report\Route\Common\ReportRouteInterface;
+use Almasmurad\Stopwatch\Stopwatch\Report\Route\FileReportRoute;
+use Almasmurad\Stopwatch\Stopwatch\Report\Route\StdoutReportRoute;
 use Almasmurad\Stopwatch\Stopwatch\State\State;
-use Almasmurad\Stopwatch\Stopwatch\StopwatchInterface;
 
 /**
  * Class Stopwatch represents a stopwatch that can be used to measure elapsed time.

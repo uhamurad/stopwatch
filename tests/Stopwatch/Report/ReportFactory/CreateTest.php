@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Report\ReportFactory;
 
-use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
+use Almasmurad\Stopwatch\Stopwatch\Notices\Collection\NoticesCollection;
 use Almasmurad\Stopwatch\Stopwatch\Notices\StartSkippedNotice;
 use Almasmurad\Stopwatch\Stopwatch\Report\Factory\ReportFactory;
 use Almasmurad\Stopwatch\Stopwatch\State\State;

@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch\Report;
+namespace Almasmurad\Stopwatch\Stopwatch\Report\Common;
 
-use Almasmurad\Stopwatch\Stopwatch\Event\EventInterface;
-use Almasmurad\Stopwatch\Stopwatch\Time\TimeInterface;
+use Almasmurad\Stopwatch\Stopwatch\Event\Common\EventInterface;
+use Almasmurad\Stopwatch\Stopwatch\Report\non;
+use Almasmurad\Stopwatch\Stopwatch\Time\Common\TimeInterface;
 
 /**
  * ReportInterface represents a Stopwatch running report.

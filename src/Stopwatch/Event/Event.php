@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\Event;
 
+use Almasmurad\Stopwatch\Stopwatch\Event\Common\EventInterface;
 use Exception;
 
 /**

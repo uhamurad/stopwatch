@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common;
+namespace Almasmurad\Stopwatch\Stopwatch\Report\Route\Common;
 
 interface ReportRouteInterface
 {

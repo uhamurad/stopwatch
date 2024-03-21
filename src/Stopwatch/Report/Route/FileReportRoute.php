@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes;
+namespace Almasmurad\Stopwatch\Stopwatch\Report\Route;
 
-use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
-use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\Exceptions\UnableToProcessReportException;
+use Almasmurad\Stopwatch\Stopwatch\Report\Route\Common\Exceptions\UnableToProcessReportException;
+use Almasmurad\Stopwatch\Stopwatch\Report\Route\Common\ReportRouteInterface;
 
 final class FileReportRoute implements ReportRouteInterface
 {

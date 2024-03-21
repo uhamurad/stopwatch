@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch;
+namespace Almasmurad\Stopwatch\Stopwatch\Common;
 
 use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
-use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
+use Almasmurad\Stopwatch\Stopwatch\Report\Route\Common\ReportRouteInterface;
 
 interface StopwatchInterface extends StopwatchWithoutSugarInterface
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch\Time;
+namespace Almasmurad\Stopwatch\Stopwatch\Time\Common;
 
 /**
  * Interface TimeInterface represents a measured time interval

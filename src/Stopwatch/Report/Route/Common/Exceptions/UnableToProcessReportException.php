@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\Exceptions;
+namespace Almasmurad\Stopwatch\Stopwatch\Report\Route\Common\Exceptions;
 
-use Almasmurad\Stopwatch\Stopwatch\Exceptions\StopwatchException;
-use Almasmurad\Stopwatch\Stopwatch\ReportRoutes\Common\ReportRouteInterface;
+use Almasmurad\Stopwatch\Stopwatch\Common\Exceptions\StopwatchException;
+use Almasmurad\Stopwatch\Stopwatch\Report\Route\Common\ReportRouteInterface;
 
 final class UnableToProcessReportException extends StopwatchException
 {

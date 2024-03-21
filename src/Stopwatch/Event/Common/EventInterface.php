@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch\Event;
+namespace Almasmurad\Stopwatch\Stopwatch\Event\Common;
 
 /**
  * Interface EventInterface represents stopwatch events such as start and stop measuring

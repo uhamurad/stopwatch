@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\State;
 
+use Almasmurad\Stopwatch\Stopwatch\Event\Common\EventInterface;
 use Almasmurad\Stopwatch\Stopwatch\Event\Event;
-use Almasmurad\Stopwatch\Stopwatch\Event\EventInterface;
 use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
 
 /**

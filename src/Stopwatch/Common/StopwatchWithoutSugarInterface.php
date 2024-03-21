@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Stopwatch;
+namespace Almasmurad\Stopwatch\Stopwatch\Common;
 
-use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
+use Almasmurad\Stopwatch\Stopwatch\Report\Common\ReportInterface;
 
 interface StopwatchWithoutSugarInterface
 {

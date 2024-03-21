@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\Time;
 
+use Almasmurad\Stopwatch\Stopwatch\Time\Common\TimeInterface;
+
 /**
  * Time class is a simple implementation of TimeInterface for internal purposes.
  *

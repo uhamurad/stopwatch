@@ -4,7 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/../vendor/autoload.php';
 
 // Create Stopwatch
-$stopwatch = new Almasmurad\Stopwatch\Stopwatch();
+$stopwatch = new \Almasmurad\Stopwatch\Stopwatch\Stopwatch();
 
 $html = file_get_contents('https://csszengarden.com/examples/index') ?: '';
 

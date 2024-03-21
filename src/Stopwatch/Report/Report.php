@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\Report;
 
+use Almasmurad\Stopwatch\Stopwatch\Event\Common\EventInterface;
 use Almasmurad\Stopwatch\Stopwatch\Event\Event;
-use Almasmurad\Stopwatch\Stopwatch\Event\EventInterface;
+use Almasmurad\Stopwatch\Stopwatch\Report\Common\ReportInterface;
+use Almasmurad\Stopwatch\Stopwatch\Time\Common\TimeInterface;
 use Almasmurad\Stopwatch\Stopwatch\Time\Time;
-use Almasmurad\Stopwatch\Stopwatch\Time\TimeInterface;
 
 /**
  * Report class is a simple implementation of ReportInterface for internal purposes.

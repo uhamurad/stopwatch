@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\Report\Factory;
 
-use Almasmurad\Stopwatch\Stopwatch\Notices\NoticesCollection;
+use Almasmurad\Stopwatch\Stopwatch\Notices\Collection\NoticesCollection;
+use Almasmurad\Stopwatch\Stopwatch\Report\Common\ReportInterface;
 use Almasmurad\Stopwatch\Stopwatch\Report\Report;
-use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 use Almasmurad\Stopwatch\Stopwatch\State\Common\StateInterface;
-use Almasmurad\Stopwatch\Stopwatch\State\State;
 
 /**
  * Class ReportFactory is responsible for creating a Report object from a given State.

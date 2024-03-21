@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\Report\Renderer;
 
+use Almasmurad\Stopwatch\Stopwatch\Report\Common\ReportInterface;
+use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Common\Exceptions\UnableToRenderReportException;
 use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
-use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Exceptions\UnableToRenderReportException;
-use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 
 /**
  * Class ThrowingExceptionReportRenderer always throws UnableToRenderReportException. Used for testing purposes

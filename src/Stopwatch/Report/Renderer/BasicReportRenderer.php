@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\Report\Renderer;
 
+use Almasmurad\Stopwatch\Stopwatch\Report\Common\ReportInterface;
 use Almasmurad\Stopwatch\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
-use Almasmurad\Stopwatch\Stopwatch\Report\ReportInterface;
 
 /**
  * Class BasicReportRenderer provides a basic implementation for rendering a report.

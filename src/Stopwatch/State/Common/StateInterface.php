@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Stopwatch\State\Common;
 
-use Almasmurad\Stopwatch\Stopwatch\Event\EventInterface;
+use Almasmurad\Stopwatch\Stopwatch\Event\Common\EventInterface;
 
 /**
  * Interface StateInterface defines methods for retrieving various timestamps of a state.
