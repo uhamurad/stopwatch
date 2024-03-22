@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Almasmurad\Stopwatch\Tests\Stopwatch;
 
+use Almasmurad\Stopwatch\Report\Sender\InMemoryReportSender;
 use Almasmurad\Stopwatch\Stopwatch;
 use PHPUnit\Framework\TestCase;
 
@@ -28,9 +29,12 @@ final class NoticesTest extends TestCase
     {
         // arrange
         $stopwatch = new Stopwatch();
+        $inMemoryReportSender = new InMemoryReportSender();
+        $stopwatch->setReportSender($inMemoryReportSender);
 
         // act
-        $output = $this->act($stopwatch, $calledMethods);
+        $this->act($stopwatch, $calledMethods);
+        $output = $inMemoryReportSender->getRenderedReport();
 
         // assert
         $this->assert($expectedNoticesMessages, $output);
@@ -127,12 +131,13 @@ final class NoticesTest extends TestCase
 
         ];
     }
+
     /**
      * @param string[] $methods
+     * @return void
      */
-    private function act(Stopwatch $stopwatch, array $methods): string
+    private function act(Stopwatch $stopwatch, array $methods)
     {
-        $this->setOutputCallback(function () {});
         foreach ($methods as $method) {
             switch ($method) {
                 case self::START:
@@ -148,7 +153,6 @@ final class NoticesTest extends TestCase
                     throw new \InvalidArgumentException(sprintf('Method "%s" of Stopwatch is unknown', $method));
             }
         }
-        return $this->getActualOutput();
     }
 
     /**
