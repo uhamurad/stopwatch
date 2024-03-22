@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Almasmurad\Stopwatch\Tests\Stopwatch;
+namespace Almasmurad\Stopwatch\Tests\Stopwatch\Stopwatch;
 
 use Almasmurad\Stopwatch\Report\Sender\InMemoryReportSender;
 use Almasmurad\Stopwatch\Stopwatch;

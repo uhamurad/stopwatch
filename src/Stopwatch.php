@@ -56,12 +56,14 @@ final class Stopwatch implements StopwatchInterface
      */
     private $reportRenderer;
 
-    public function __construct()
-    {
+    public function __construct(
+        ReportSenderInterface $reportSender = null,
+        ReportRendererInterface $reportRenderer = null
+    ) {
         $this->createTimestamp = $this->getCurrentTimestamp();
         $this->notices = new NoticesCollection();
-        $this->reportSender = $this->getDefaultReportSender();
-        $this->reportRenderer = $this->getDefaultReportRenderer();
+        $this->reportSender = $reportSender ?? $this->getDefaultReportSender();
+        $this->reportRenderer = $reportRenderer ?? $this->getDefaultReportRenderer();
         $this->state = new State();
     }
 

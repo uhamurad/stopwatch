@@ -45,13 +45,15 @@ abstract class AbstractTest extends TestCase
 
     /**
      * @return float[]
-     * @throws \Exception
      */
     protected function simpleAct(StopwatchInterface $stopwatch): array
     {
         $beforeStartTimestamp = microtime(true);
         $stopwatch->start();
-        usleep(random_int(100, 100000));
+        try {
+            usleep(random_int(100, 100000));
+        } catch (\Throwable $exception) {
+        }
         $afterStartTimestamp = microtime(true);
         $stopwatch->finish();
         $afterFinishTimestamp = microtime(true);
