@@ -48,6 +48,7 @@ $finishedAt = $report->getFinishEvent()->getTimestamp();
 $elapsed    = $report->getAllTime()->getSeconds();
 ```
 
+You can read more about the report object in the section '[Report object](Report/ReportObject.md)'
 
 ## Additional Features
 
@@ -77,4 +78,6 @@ Stopwatch will evolve and acquire additional features. An incomplete list of pla
 ## Learn more
 
 - [Notices and Erroneous Situations](docs/en/Notices.md)
+- [Report Object](Report/ReportObject.md)
+- [Reporting customization](Report/ReportingCustomization.md)
 - [The Principles by Which Stopwatch Was Created](docs/en/Principles.md)
