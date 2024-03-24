@@ -36,7 +36,7 @@ $stopwatch = new Almasmurad\Stopwatch\Stopwatch();
 
 $stopwatch->reportToFile(__DIR__.'/report.txt');
 ```
-Report will be written to a file, and nothing will get into the standard output. If the file `report.txt ` already exists, the report will replace its contents.
+Report will be written to a file, and nothing will get into the standard output. If the file `report.txt` already exists, the report will replace its contents.
 
 
 ### Access to the Report components

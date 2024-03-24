@@ -16,7 +16,7 @@ $stopwatch->finish();    // !!! error - repeated calling the finish() method
 $stopwatch->report();
 ```
 
-In this example, the `finish` method is called 2 times. This is an erroneous situation, and a warning about its occurrence will be contained in the report:
+In this example, the `finish()` method is called 2 times. This is an erroneous situation, and a warning about its occurrence will be contained in the report:
 
 ```
 Started at Sat, 27 Jan 2024 06:55:14 +0000
@@ -27,7 +27,7 @@ Notices:
  - finish() method calling was skipped, because Stopwatch is already finished
 ```
 
-Using the `getReport` method, you can get the text of all notices:
+Using the `getNotices()` method, you can get the text of all notices:
 
 ```php
 $report = $stopwatch->getReport();
