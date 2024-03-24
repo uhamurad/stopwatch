@@ -1,5 +1,6 @@
 
-# Notices
+Notices
+========================
 
 If unforeseen situations occur while Stopwatch is running, or if its methods were called in the wrong order, the main program will not be interrupted by throwing exceptions or PHP errors. 
 
@@ -9,7 +10,7 @@ Consider the following example:
 
 ```php
 $stopwatch = new Almasmurad\Stopwatch\Stopwatch();
-$stopwatch->start();   // start measuring
+$stopwatch->start();     // start measuring
 $stopwatch->finish();    // finish measuring
 $stopwatch->finish();    // !!! error - repeated calling the finish() method 
 $stopwatch->report();

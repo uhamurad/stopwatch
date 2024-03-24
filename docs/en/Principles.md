@@ -1,7 +1,9 @@
 
-# The Principles by Which Stopwatch Was Created
+The Principles by Which Stopwatch Was Created
+========================
 
-## Minimum number of dependencies on external packages
+Minimum number of dependencies on external packages
+------------------------------------------------------
 
 The main project contains a minimum of dependencies on other composer packages.
 
@@ -12,6 +14,7 @@ For example, if you have the ability to send reports using `Monolog`, a separate
 At the same time, the main package may contain modules using native PHP functions and classes, such as `file_put_contents()`, etc., which do not need adding new requirements to PHP extensions (such as `ext-json`). The exception at the moment is the `ext-mbstring`.
 
 
-## Stopwatch does not throw errors and exceptions
+Stopwatch does not throw errors and exceptions
+------------------------------------------------------
 
 All erroneous and exceptional situations should be reflected in the report and logs. They should not interrupt the main program (see [Notices](Notices.md) chapter).

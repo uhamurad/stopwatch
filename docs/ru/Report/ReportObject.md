@@ -4,7 +4,7 @@
 Получение объекта отчёта
 ------------------------------------------------------
 
-Результатом работы Stopwatch является отчёт, который в объектом представлении можно получить, вызвав метод `getReport()`:
+Результатом работы Stopwatch является отчёт, который в объектном представлении можно получить, вызвав метод `getReport()`:
 
 ```php
 $stopwatch = new Almasmurad\Stopwatch\Stopwatch();
@@ -23,12 +23,19 @@ $report = $stopwatch->getReport();
 | `getAllTime()`     | `TimeInterface`  | время, прошедшее от начала до конца отсчёта |
 
 
+События
+------------------------------------------------------
+
 Объект-составляющее отчёта типа `EventInterface` (интерфейс `Almasmurad\Stopwatch\Event\Common\EventInterface`) - событие, имеет следующие методы:
 
 | метод              | тип                 | описание                              |
 |--------------------|---------------------|---------------------------------------|
 | `getTimestamp()`   | `float`             | дата события в формате Unix time      |
 | `getDateTime()`    | `DateTimeInterface` | дата события в форме объекта DateTime |
+
+
+Периоды времени
+------------------------------------------------------
 
 Объект-составляющее отчёта типа `TimeInterface` (интерфейс `Almasmurad\Stopwatch\Time\Common\TimeInterface`) - период времени, имеет следующие методы:
 
@@ -41,5 +48,5 @@ $report = $stopwatch->getReport();
 ```php
 $report = $stopwatch->getReport();
 $elapsed = $report->getAllTime()->getSeconds();
-printf('Wow it spent %f seconds', $elapsed);
+printf('Ух ты, прошло %f секунд!', $elapsed);
 ```

@@ -1,10 +1,13 @@
-# Stopwatch
+Stopwatch
+========================
 
 PHP tool that measures code execution time.
 
 [README in Russian](docs/ru/README.md)
 
-## Usage
+
+Usage
+------------------------------------------------------
 
 ```php
 $stopwatch = new Almasmurad\Stopwatch\Stopwatch();
@@ -50,7 +53,9 @@ $elapsed    = $report->getAllTime()->getSeconds();
 
 You can read more about the report object in the section '[Report object](Report/ReportObject.md)'
 
-## Additional Features
+
+Additional Features
+------------------------------------------------------
 
 Using the `start()` and `finish()` methods, you can measure a separate section of the code:
 
@@ -67,7 +72,8 @@ $stopwatch->report();
 ```
 
 
-## Future Plans
+Future Plans
+------------------------------------------------------
 
 Stopwatch will evolve and acquire additional features. An incomplete list of planned changes:
 - Adding the `step()` method, which can be used to measure the time of each stage of the process.
@@ -75,7 +81,8 @@ Stopwatch will evolve and acquire additional features. An incomplete list of pla
 - Adding the ability to measure a repeatable process when the `start()` and `finish()` methods are called multiple times.
 
 
-## Learn more
+Learn more
+------------------------------------------------------
 
 - [Notices and Erroneous Situations](docs/en/Notices.md)
 - [Report Object](Report/ReportObject.md)
