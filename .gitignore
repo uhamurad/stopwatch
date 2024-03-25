@@ -7,5 +7,5 @@ composer.phar
 /composer.lock
 /phpunit.xml
 /tests/Stopwatch/runtime/
-/examples/report/
+/examples/runtime/
 /rector.php
