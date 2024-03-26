@@ -5,16 +5,12 @@ declare(strict_types=1);
 namespace Almasmurad\Stopwatch\Tests\Stopwatch\Stopwatch;
 
 use Almasmurad\Stopwatch\Report\Renderer\BasicReportRenderer;
-use Almasmurad\Stopwatch\Report\Renderer\ThrowingExceptionReportRenderer;
 use Almasmurad\Stopwatch\Report\Sender\InMemoryReportSender;
 use Almasmurad\Stopwatch\Stopwatch;
 use Almasmurad\Stopwatch\Tests\Stopwatch\Common\AbstractTest;
-use Exception;
-use org\bovigo\vfs\vfsStream;
 
 final class ConstructorAndSettersTest extends AbstractTest
 {
-
     /**
      * @return void
      */

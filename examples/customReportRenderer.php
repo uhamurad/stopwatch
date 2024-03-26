@@ -12,7 +12,7 @@ class OneLineReportRenderer implements ReportRendererInterface
     public function render(ReportInterface $report): string
     {
         $start = $report->getStartEvent()->getDateTime()->format('H:i:s');
-        $duration = (int)$report->getAllTime()->getSeconds();
+        $duration = (int) $report->getAllTime()->getSeconds();
 
         return "Stopwatch started at {$start} and ran for {$duration} full seconds";
     }
@@ -27,4 +27,4 @@ preg_match_all('/\bhttps?:\/\/[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|\/))/i'
 $urls = $match[0];
 
 // Finish measuring, set new renderer and print report to standard output
-$stopwatch->setReportRenderer(new OneLineReportRenderer)->report();
+$stopwatch->setReportRenderer(new OneLineReportRenderer())->report();

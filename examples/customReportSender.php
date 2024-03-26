@@ -18,7 +18,7 @@ class SyslogReportSender implements ReportSenderInterface
 }
 
 // Create Stopwatch with new sender and start measuring
-$stopwatch = new \Almasmurad\Stopwatch\Stopwatch(new SyslogReportSender);
+$stopwatch = new \Almasmurad\Stopwatch\Stopwatch(new SyslogReportSender());
 
 // (measured code)
 $html = file_get_contents('https://csszengarden.com/examples/index') ?: '';
