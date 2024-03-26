@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Almasmurad\Stopwatch\Report\Sender\Common\ReportSenderInterface;
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Declare new sender class
 class SyslogReportSender implements ReportSenderInterface
@@ -29,4 +29,4 @@ $urls = $match[0];
 $stopwatch->report();
 
 // Let's check the syslog
-system('less /var/log/syslog');
+system('tail /var/log/syslog 2>&1');

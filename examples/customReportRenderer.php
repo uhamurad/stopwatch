@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Almasmurad\Stopwatch\Report\Common\ReportInterface;
 use Almasmurad\Stopwatch\Report\Renderer\Common\ReportRendererInterface;
