@@ -21,6 +21,7 @@ The `$report` object provides access to the report components via methods:
 | `getStartEvent()`  | `EventInterface` | Stopwatch countdown beginning event                             |
 | `getFinishEvent()` | `EventInterface` | Stopwatch countdown end event                                   |
 | `getAllTime()`     | `TimeInterface`  | The time elapsed from the beginning to the end of the countdown |
+| `getNotices()`     | `string[]`       | Notices list (see the chapter [Notices](../Notices.md))         |
 
 Events
 ------------------------------------------------------
