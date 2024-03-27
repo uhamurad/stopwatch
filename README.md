@@ -39,7 +39,7 @@ $stopwatch->reportToFile(__DIR__.'/report.txt');
 Report will be written to a file, and nothing will get into the standard output. If the file `report.txt` already exists, the report will replace its contents.
 
 
-### Access to the Report components
+### Access to the Report Components
 
 Instead of outputting the report to a standard stream or file, you can access its components: Stopwatch start and end events, as well as the duration of its work. To do this, use the `getReport()` method:
 
@@ -81,7 +81,7 @@ Stopwatch will evolve and acquire additional features. An incomplete list of pla
 - Adding the ability to measure a repeatable process when the `start()` and `finish()` methods are called multiple times.
 
 
-Learn more
+Learn More
 ------------------------------------------------------
 
 - [Notices and Erroneous Situations](docs/en/Notices.md)
